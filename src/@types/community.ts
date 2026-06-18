@@ -18,8 +18,8 @@ export type TipoPost =
 // entidade que representa um post do feed
 export interface PostComunidade {
     id: string;
-    Usuario: string;
-    NivelUsuario: number;
+    usuario: string;
+    nivelUsuario: number;
     titulo: string;
     conteudo: string;
     areaPost: AreaComunidade;
