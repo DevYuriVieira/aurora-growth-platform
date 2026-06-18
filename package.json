@@ -36,5 +36,17 @@
     "@types/react": "~19.1.0",
     "typescript": "~5.9.2"
   },
-  "private": true
+  "private": true,
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevYuriVieira/aurora-growth-platform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevYuriVieira/aurora-growth-platform/issues"
+  },
+  "homepage": "https://github.com/DevYuriVieira/aurora-growth-platform#readme"
 }
