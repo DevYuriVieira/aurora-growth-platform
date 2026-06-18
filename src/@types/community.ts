@@ -1,17 +1,16 @@
 //tipagem para os posts -> direciona as áreas
 export type AreaComunidade =
-    | 'educação'
+    | 'educacao'
     | 'trabalho'
-    | 'saúde'
-    | 'educação'
-    | 'finança'
+    | 'saude'
+    | 'financas'
     | 'tecnologia'
     | 'carreira';
 
 // natureza do post
 export type TipoPost =
-    | 'história'
-    | 'dúvida'
+    | 'historia'
+    | 'duvida'
     | 'dica'
     | 'conquista';
 
@@ -35,3 +34,21 @@ export interface CriacaoPostDTO {
     areaPost: AreaComunidade;
     tipoPost: TipoPost;
 }
+
+// tradução das áreas para usuário
+export const TiposAreaComunidade: Record<AreaComunidade, string> = {
+    educacao: 'Educação',
+    trabalho: 'Trabalho',
+    saude: 'Saúde',
+    financas: 'Finanças',
+    tecnologia: 'Tecnologia',
+    carreira: 'Carreira',
+};
+
+//tradução dos tipos de post para usuário
+export const TiposPostComunidade: Record<TipoPost, string> = {
+    historia: 'História',
+    duvida: 'Dúvida',
+    dica: 'Dica',
+    conquista: 'Conquista',
+};

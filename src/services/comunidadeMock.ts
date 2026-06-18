@@ -22,7 +22,7 @@ export const postComunidadeMock: PostComunidade[] = [
         conteudo:
             'Eu não sabia por onde começar. Então decidi estudar lógica, depois HTML, CSS e JavaScript. O mais importante foi criar uma rotina pequena, mas constante.',
         areaPost: 'tecnologia',
-        tipoPost: 'história',
+        tipoPost: 'historia',
         xpRecompensa: 60,
         dataCriacao: '2026-06-18',
     },
@@ -34,7 +34,7 @@ export const postComunidadeMock: PostComunidade[] = [
         conteudo:
             'Estou procurando meu primeiro emprego e ainda não sei o que colocar no currículo. Quais informações são essenciais?',
         areaPost: 'carreira',
-        tipoPost: 'dúvida',
+        tipoPost: 'duvida',
         xpRecompensa: 30,
         dataCriacao: '2026-06-18',
     },
@@ -45,7 +45,7 @@ export const postComunidadeMock: PostComunidade[] = [
         titulo: 'Passei no vestibular depois de duas tentativas',
         conteudo:
             'Quase desisti, mas continuei estudando com metas pequenas. Hoje consegui minha aprovação e queria deixar essa mensagem para quem está cansado: continue.',
-        areaPost: 'educação',
+        areaPost: 'educacao',
         tipoPost: 'conquista',
         xpRecompensa: 100,
         dataCriacao: '2026-06-18',
