@@ -181,4 +181,13 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: '700',
     },
+
+    caixaOpcoes: {
+        backgroundColor: '#F9FAFB',
+        borderRadius: 14,
+        padding: 12,
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
+        marginBottom: 8,
+    },
 });

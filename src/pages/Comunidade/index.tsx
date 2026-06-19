@@ -246,7 +246,7 @@ export function Comunidade() {
                     </View>
                     <Text style={styles.labelCampo}>Área</Text>
 
-                    <View style={styles.opcoesContainer}>
+                    <View style={[styles.opcoesContainer, styles.caixaOpcoes]}>
                         {areasFormulario.map((area) => {
                             const estaSelecionada = areaFormulario === area;
 
@@ -273,7 +273,7 @@ export function Comunidade() {
                     </View>
                     <Text style={styles.labelCampo}>Tipo</Text>
 
-                    <View style={styles.opcoesContainer}>
+                    <View style={[styles.opcoesContainer, styles.caixaOpcoes]}>
                         {tiposFormulario.map((tipo) => {
                             const estaSelecionado = tipoFormulario === tipo;
 
