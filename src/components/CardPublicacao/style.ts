@@ -71,4 +71,17 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '600',
     },
+
+    botaoEditar: {
+        backgroundColor: '#EEF2FF',
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        borderRadius: 999,
+    },
+
+    textoBotaoEditar: {
+        color: '#3730A3',
+        fontSize: 13,
+        fontWeight: '700',
+    },
 });

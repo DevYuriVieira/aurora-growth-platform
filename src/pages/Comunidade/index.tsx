@@ -58,15 +58,27 @@ export function Comunidade() {
         useState<AreaComunidade>('carreira');
     const [tipoFormulario, setTipoFormulario] =
         useState<TipoPost>('historia');
+    const [publicacaoEmEdicao, setPublicacaoEmEdicao] =
+        useState<PostComunidade | null>(null);
 
     function limparFormulario() {
         setTitulo('');
         setConteudo('');
         setAreaFormulario('carreira');
         setTipoFormulario('historia');
+        setPublicacaoEmEdicao(null);
     }
 
-    async function criarPublicacao() {
+    function abrirEdicao(publicacao: PostComunidade) {
+        setPublicacaoEmEdicao(publicacao);
+        setTitulo(publicacao.titulo);
+        setConteudo(publicacao.conteudo);
+        setAreaFormulario(publicacao.areaPost);
+        setTipoFormulario(publicacao.tipoPost);
+        setModalVisivel(true);
+    }
+
+    async function salvarPublicacao() {
         const dadosFormulario: PublicacaoComunidadeFormData = {
             titulo,
             conteudo,
@@ -81,6 +93,35 @@ export function Comunidade() {
                 validacao.error.issues[0]?.message || 'Verifique os campos informados.';
 
             Alert.alert('Dados inválidos', primeiraMensagemErro);
+            return;
+        }
+
+        if (publicacaoEmEdicao) {
+            const publicacoesAtualizadas = publicacoes.map((publicacao) => {
+                if (publicacao.id === publicacaoEmEdicao.id) {
+                    return {
+                        ...publicacao,
+                        titulo: validacao.data.titulo,
+                        conteudo: validacao.data.conteudo,
+                        area: validacao.data.area,
+                        tipo: validacao.data.tipo,
+                    };
+                }
+
+                return publicacao;
+            });
+
+            setPublicacoes(publicacoesAtualizadas);
+            await salvarPublicacoes(publicacoesAtualizadas);
+
+            limparFormulario();
+            setModalVisivel(false);
+
+            Alert.alert(
+                'Publicação atualizada',
+                'As alterações foram salvas com sucesso.'
+            );
+
             return;
         }
 
@@ -196,7 +237,10 @@ export function Comunidade() {
                 data={publicacoesFiltradas}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <CardPublicacao publicacao={item} />
+                    <CardPublicacao
+                        publicacao={item}
+                        aoEditar={abrirEdicao}
+                    />
                 )}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.listaConteudo}
@@ -226,7 +270,9 @@ export function Comunidade() {
             >
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalConteudo}>
-                        <Text style={styles.modalTitulo}>Compartilhar recomeço</Text>
+                        <Text style={styles.modalTitulo}>
+                            {publicacaoEmEdicao ? 'Editar publicação' : 'Compartilhar recomeço'}
+                        </Text>
 
                         <Text style={styles.labelCampo}>Título</Text>
                         <TextInput
@@ -314,9 +360,11 @@ export function Comunidade() {
 
                         <TouchableOpacity
                             style={[styles.botaoModal, styles.botaoSalvar]}
-                            onPress={criarPublicacao}
+                            onPress={salvarPublicacao}
                         >
-                            <Text style={styles.textoSalvar}>Publicar</Text>
+                            <Text style={styles.textoSalvar}>
+                                {publicacaoEmEdicao ? 'Salvar alterações' : 'Publicar'}
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>

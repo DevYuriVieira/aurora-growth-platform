@@ -7,6 +7,7 @@ import { styles } from './style';
 export function CardPublicacao({
     publicacao,
     aoPressionar,
+    aoEditar,
 }: CardPublicacaoProps) {
     return (
         <TouchableOpacity
@@ -34,11 +35,20 @@ export function CardPublicacao({
             </Text>
 
             <View style={styles.rodape}>
-                <Text style={styles.tipo}>
-                    {TiposPostComunidade[publicacao.tipoPost]}
-                </Text>
+                <View>
+                    <Text style={styles.tipo}>
+                        {TiposPostComunidade[publicacao.tipoPost]}
+                    </Text>
 
-                <Text style={styles.dataCriacao}>{publicacao.dataCriacao}</Text>
+                    <Text style={styles.dataCriacao}>{publicacao.dataCriacao}</Text>
+                </View>
+
+                <TouchableOpacity
+                    style={styles.botaoEditar}
+                    onPress={() => aoEditar?.(publicacao)}
+                >
+                    <Text style={styles.textoBotaoEditar}>Editar</Text>
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
