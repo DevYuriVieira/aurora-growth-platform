@@ -20,11 +20,14 @@ import {
     PublicacaoComunidadeFormData,
     publicacaoComunidadeSchema,
 } from '../../schemas/publicacaoComunidadeSchema';
+import {
+    buscarPublicacoesSalvas,
+    salvarPublicacoes,
+} from '../../services/comunidadeStorageService';
 import { PostComunidade } from '../../@types/community';
 import { CardPublicacao } from '../../components/CardPublicacao';
 import { FiltroArea } from '../../components/FiltroComunidade/type';
 import { FiltroComunidade } from '../../components/FiltroComunidade';
-import { postComunidadeMock } from '../../services/comunidadeMock';
 import { styles } from './style';
 
 const areasFormulario: AreaComunidade[] = [
@@ -63,7 +66,7 @@ export function Comunidade() {
         setTipoFormulario('historia');
     }
 
-    function criarPublicacao() {
+    async function criarPublicacao() {
         const dadosFormulario: PublicacaoComunidadeFormData = {
             titulo,
             conteudo,
@@ -93,10 +96,10 @@ export function Comunidade() {
             dataCriacao: 'Hoje',
         };
 
-        setPublicacoes((publicacoesAtuais) => [
-            novaPublicacao,
-            ...publicacoesAtuais,
-        ]);
+        const publicacoesAtualizadas = [novaPublicacao, ...publicacoes];
+
+        setPublicacoes(publicacoesAtualizadas);
+        await salvarPublicacoes(publicacoesAtualizadas);
 
         limparFormulario();
         setModalVisivel(false);
@@ -111,9 +114,9 @@ export function Comunidade() {
         try {
             setCarregando(true);
 
-            await new Promise((resolve) => setTimeout(resolve, 700));
+            const publicacoesSalvas = await buscarPublicacoesSalvas();
 
-            setPublicacoes(postComunidadeMock);
+            setPublicacoes(publicacoesSalvas);
         } catch {
             Alert.alert(
                 'Erro ao carregar',
@@ -132,9 +135,9 @@ export function Comunidade() {
         try {
             setAtualizando(true);
 
-            await new Promise((resolve) => setTimeout(resolve, 700));
+            const publicacoesSalvas = await buscarPublicacoesSalvas();
 
-            setPublicacoes(postComunidadeMock);
+            setPublicacoes(publicacoesSalvas);
         } catch {
             Alert.alert(
                 'Erro ao atualizar',
