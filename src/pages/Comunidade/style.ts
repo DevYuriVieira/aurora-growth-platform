@@ -60,4 +60,125 @@ export const styles = StyleSheet.create({
         lineHeight: 22,
         textAlign: 'center',
     },
+
+    botaoNovaPublicacao: {
+        backgroundColor: '#111827',
+        borderRadius: 14,
+        paddingVertical: 14,
+        alignItems: 'center',
+        marginTop: 18,
+    },
+
+    textoBotaoNovaPublicacao: {
+        color: '#FFFFFF',
+        fontSize: 15,
+        fontWeight: '700',
+    },
+
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.45)',
+        justifyContent: 'flex-end',
+    },
+
+    modalConteudo: {
+        backgroundColor: '#FFFFFF',
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        paddingHorizontal: 20,
+        paddingTop: 24,
+        paddingBottom: 32,
+    },
+
+    modalTitulo: {
+        color: '#111827',
+        fontSize: 22,
+        fontWeight: '800',
+        marginBottom: 18,
+    },
+
+    labelCampo: {
+        color: '#374151',
+        fontSize: 14,
+        fontWeight: '700',
+        marginBottom: 8,
+        marginTop: 10,
+    },
+
+    input: {
+        backgroundColor: '#F9FAFB',
+        borderWidth: 1,
+        borderColor: '#E5E7EB',
+        borderRadius: 12,
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        color: '#111827',
+        fontSize: 15,
+    },
+
+    textArea: {
+        minHeight: 90,
+        textAlignVertical: 'top',
+    },
+
+    opcoesContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 8,
+    },
+
+    botaoOpcao: {
+        backgroundColor: '#F3F4F6',
+        borderRadius: 999,
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+    },
+
+    botaoOpcaoAtivo: {
+        backgroundColor: '#2563EB',
+    },
+
+    textoOpcao: {
+        color: '#374151',
+        fontSize: 13,
+        fontWeight: '600',
+    },
+
+    textoOpcaoAtivo: {
+        color: '#FFFFFF',
+    },
+
+    modalAcoes: {
+        flexDirection: 'row',
+        gap: 12,
+        marginTop: 24,
+    },
+
+    botaoModal: {
+        flex: 1,
+        height: 48,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    botaoCancelar: {
+        backgroundColor: '#F3F4F6',
+    },
+
+    botaoSalvar: {
+        backgroundColor: '#111827',
+    },
+
+    textoCancelar: {
+        color: '#374151',
+        fontSize: 15,
+        fontWeight: '700',
+    },
+
+    textoSalvar: {
+        color: '#FFFFFF',
+        fontSize: 15,
+        fontWeight: '700',
+    },
 });

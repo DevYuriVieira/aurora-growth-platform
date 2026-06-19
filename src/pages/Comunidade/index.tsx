@@ -3,10 +3,23 @@ import {
     ActivityIndicator,
     Alert,
     FlatList,
+    Modal,
     RefreshControl,
     Text,
+    TextInput,
+    TouchableOpacity,
     View,
 } from 'react-native';
+import {
+    AreaComunidade,
+    TipoPost,
+    TiposPostComunidade,
+    TiposAreaComunidade,
+} from '../../@types/community';
+import {
+    PublicacaoComunidadeFormData,
+    publicacaoComunidadeSchema,
+} from '../../schemas/publicacaoComunidadeSchema';
 import { PostComunidade } from '../../@types/community';
 import { CardPublicacao } from '../../components/CardPublicacao';
 import { FiltroArea } from '../../components/FiltroComunidade/type';
@@ -14,11 +27,85 @@ import { FiltroComunidade } from '../../components/FiltroComunidade';
 import { postComunidadeMock } from '../../services/comunidadeMock';
 import { styles } from './style';
 
+const areasFormulario: AreaComunidade[] = [
+    'educacao',
+    'trabalho',
+    'saude',
+    'financas',
+    'tecnologia',
+    'carreira',
+];
+
+const tiposFormulario: TipoPost[] = [
+    'historia',
+    'duvida',
+    'dica',
+    'conquista',
+];
+
 export function Comunidade() {
     const [publicacoes, setPublicacoes] = useState<PostComunidade[]>([]);
     const [carregando, setCarregando] = useState(true);
     const [atualizando, setAtualizando] = useState(false);
     const [areaSelecionada, setAreaSelecionada] = useState<FiltroArea>('todas');
+    const [modalVisivel, setModalVisivel] = useState(false);
+    const [titulo, setTitulo] = useState('');
+    const [conteudo, setConteudo] = useState('');
+    const [areaFormulario, setAreaFormulario] =
+        useState<AreaComunidade>('carreira');
+    const [tipoFormulario, setTipoFormulario] =
+        useState<TipoPost>('historia');
+
+    function limparFormulario() {
+        setTitulo('');
+        setConteudo('');
+        setAreaFormulario('carreira');
+        setTipoFormulario('historia');
+    }
+
+    function criarPublicacao() {
+        const dadosFormulario: PublicacaoComunidadeFormData = {
+            titulo,
+            conteudo,
+            area: areaFormulario,
+            tipo: tipoFormulario,
+        };
+
+        const validacao = publicacaoComunidadeSchema.safeParse(dadosFormulario);
+
+        if (!validacao.success) {
+            const primeiraMensagemErro =
+                validacao.error.issues[0]?.message || 'Verifique os campos informados.';
+
+            Alert.alert('Dados inválidos', primeiraMensagemErro);
+            return;
+        }
+
+        const novaPublicacao: PostComunidade = {
+            id: String(new Date().getTime()),
+            usuario: 'Você',
+            nivelUsuario: 1,
+            titulo: validacao.data.titulo,
+            conteudo: validacao.data.conteudo,
+            areaPost: validacao.data.area,
+            tipoPost: validacao.data.tipo,
+            xpRecompensa: 50,
+            dataCriacao: 'Hoje',
+        };
+
+        setPublicacoes((publicacoesAtuais) => [
+            novaPublicacao,
+            ...publicacoesAtuais,
+        ]);
+
+        limparFormulario();
+        setModalVisivel(false);
+
+        Alert.alert(
+            'Publicação criada',
+            'Seu recomeço foi compartilhado no mural.'
+        );
+    }
 
     async function carregarPublicacoes() {
         try {
@@ -88,6 +175,15 @@ export function Comunidade() {
                 </Text>
             </View>
 
+            <TouchableOpacity
+                style={styles.botaoNovaPublicacao}
+                onPress={() => setModalVisivel(true)}
+            >
+                <Text style={styles.textoBotaoNovaPublicacao}>
+                    + Compartilhar recomeço
+                </Text>
+            </TouchableOpacity>
+
             <FiltroComunidade
                 areaSelecionada={areaSelecionada}
                 aoSelecionarArea={setAreaSelecionada}
@@ -120,6 +216,108 @@ export function Comunidade() {
                     </View>
                 }
             />
+            <Modal
+                visible={modalVisivel}
+                animationType="slide"
+                transparent
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalConteudo}>
+                        <Text style={styles.modalTitulo}>Compartilhar recomeço</Text>
+
+                        <Text style={styles.labelCampo}>Título</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={titulo}
+                            onChangeText={setTitulo}
+                            placeholder="Ex: Consegui minha primeira entrevista"
+                            placeholderTextColor="#9CA3AF"
+                        />
+
+                        <Text style={styles.labelCampo}>Conteúdo</Text>
+                        <TextInput
+                            style={[styles.input, styles.textArea]}
+                            value={conteudo}
+                            onChangeText={setConteudo}
+                            placeholder="Conte sua história, dúvida ou conquista..."
+                            placeholderTextColor="#9CA3AF"
+                            multiline
+                        />
+                    </View>
+                    <Text style={styles.labelCampo}>Área</Text>
+
+                    <View style={styles.opcoesContainer}>
+                        {areasFormulario.map((area) => {
+                            const estaSelecionada = areaFormulario === area;
+
+                            return (
+                                <TouchableOpacity
+                                    key={area}
+                                    style={[
+                                        styles.botaoOpcao,
+                                        estaSelecionada && styles.botaoOpcaoAtivo,
+                                    ]}
+                                    onPress={() => setAreaFormulario(area)}
+                                >
+                                    <Text
+                                        style={[
+                                            styles.textoOpcao,
+                                            estaSelecionada && styles.textoOpcaoAtivo,
+                                        ]}
+                                    >
+                                        {[TiposAreaComunidade[area]]}
+                                    </Text>
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </View>
+                    <Text style={styles.labelCampo}>Tipo</Text>
+
+                    <View style={styles.opcoesContainer}>
+                        {tiposFormulario.map((tipo) => {
+                            const estaSelecionado = tipoFormulario === tipo;
+
+                            return (
+                                <TouchableOpacity
+                                    key={tipo}
+                                    style={[
+                                        styles.botaoOpcao,
+                                        estaSelecionado && styles.botaoOpcaoAtivo,
+                                    ]}
+                                    onPress={() => setTipoFormulario(tipo)}
+                                >
+                                    <Text
+                                        style={[
+                                            styles.textoOpcao,
+                                            estaSelecionado && styles.textoOpcaoAtivo,
+                                        ]}
+                                    >
+                                        {TiposPostComunidade[tipo]}
+                                    </Text>
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </View>
+                    <View style={styles.modalAcoes}>
+                        <TouchableOpacity
+                            style={[styles.botaoModal, styles.botaoCancelar]}
+                            onPress={() => {
+                                limparFormulario();
+                                setModalVisivel(false);
+                            }}
+                        >
+                            <Text style={styles.textoCancelar}>Cancelar</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.botaoModal, styles.botaoSalvar]}
+                            onPress={criarPublicacao}
+                        >
+                            <Text style={styles.textoSalvar}>Publicar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal >
         </View>
     );
 }
