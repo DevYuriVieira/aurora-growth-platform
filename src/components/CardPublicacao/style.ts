@@ -84,4 +84,22 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '700',
     },
+
+    acoes: {
+        flexDirection: 'row',
+        gap: 8,
+    },
+
+    botaoExcluir: {
+        backgroundColor: '#FEE2E2',
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        borderRadius: 999,
+    },
+
+    textoBotaoExcluir: {
+        color: '#B91C1C',
+        fontSize: 13,
+        fontWeight: '700',
+    },
 });

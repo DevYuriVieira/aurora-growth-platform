@@ -8,6 +8,7 @@ export function CardPublicacao({
     publicacao,
     aoPressionar,
     aoEditar,
+    aoExcluir,
 }: CardPublicacaoProps) {
     return (
         <TouchableOpacity
@@ -43,12 +44,21 @@ export function CardPublicacao({
                     <Text style={styles.dataCriacao}>{publicacao.dataCriacao}</Text>
                 </View>
 
-                <TouchableOpacity
-                    style={styles.botaoEditar}
-                    onPress={() => aoEditar?.(publicacao)}
-                >
-                    <Text style={styles.textoBotaoEditar}>Editar</Text>
-                </TouchableOpacity>
+                <View style={styles.acoes}>
+                    <TouchableOpacity
+                        style={styles.botaoEditar}
+                        onPress={() => aoEditar?.(publicacao)}
+                    >
+                        <Text style={styles.textoBotaoEditar}>Editar</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.botaoExcluir}
+                        onPress={() => aoExcluir?.(publicacao)}
+                    >
+                        <Text style={styles.textoBotaoExcluir}>Excluir</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </TouchableOpacity>
     );

@@ -78,7 +78,47 @@ export function Comunidade() {
         setModalVisivel(true);
     }
 
+    function confirmarExclusao(publicacaoSelecionada: PostComunidade) {
+        Alert.alert(
+            'Excluir publicação',
+            `Deseja excluir "${publicacaoSelecionada.titulo}"?`,
+            [
+                {
+                    text: 'Cancelar',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Excluir',
+                    style: 'destructive',
+                    onPress: () => excluirPublicacao(publicacaoSelecionada.id),
+                },
+            ]
+        );
+    }
+
+    async function excluirPublicacao(idPublicacao: string) {
+        try {
+            const publicacoesAtualizadas = publicacoes.filter(
+                (publicacao) => publicacao.id !== idPublicacao
+            );
+
+            setPublicacoes(publicacoesAtualizadas);
+            await salvarPublicacoes(publicacoesAtualizadas);
+
+            Alert.alert(
+                'Publicação excluída',
+                'A publicação foi removida do mural.'
+            );
+        } catch {
+            Alert.alert(
+                'Erro ao excluir',
+                'Não foi possível excluir a publicação agora.'
+            );
+        }
+    }
+
     async function salvarPublicacao() {
+
         const dadosFormulario: PublicacaoComunidadeFormData = {
             titulo,
             conteudo,
@@ -103,8 +143,8 @@ export function Comunidade() {
                         ...publicacao,
                         titulo: validacao.data.titulo,
                         conteudo: validacao.data.conteudo,
-                        area: validacao.data.area,
-                        tipo: validacao.data.tipo,
+                        areaPost: validacao.data.area,
+                        tipoPost: validacao.data.tipo,
                     };
                 }
 
@@ -240,6 +280,7 @@ export function Comunidade() {
                     <CardPublicacao
                         publicacao={item}
                         aoEditar={abrirEdicao}
+                        aoExcluir={confirmarExclusao}
                     />
                 )}
                 showsVerticalScrollIndicator={false}

@@ -4,4 +4,5 @@ export interface CardPublicacaoProps {
     publicacao: PostComunidade;
     aoPressionar?: (publicacao: PostComunidade) => void;
     aoEditar?: (publicacao: PostComunidade) => void;
+    aoExcluir?: (publicacao: PostComunidade) => void;
 }
