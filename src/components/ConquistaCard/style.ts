@@ -1,16 +1,17 @@
-
 import { StyleSheet } from "react-native";
+import { theme } from "../../styles/theme";
 
 export const styles = StyleSheet.create({
 
     card:{
 
-    backgroundColor: '#FFFFFF',
-        alignItems: 'center', // Centraliza tudo dentro do card
+    backgroundColor: theme.colors.surfaceBright,
+        alignItems: 'center',
         padding: 20,
         borderRadius: 16,
         gap:10,
-        width:150
+        width:150,
+        boxShadow:'1px 1px 1px 1px rgba(0, 0, 0, 0.1)'
         
     },
 
@@ -21,13 +22,13 @@ export const styles = StyleSheet.create({
     titulo:{
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#1A1A1A', 
+        color: theme.colors.onPrimary, 
         marginBottom: 4
     }, 
 
     subtitulo:{
         fontSize: 13,
-        color: 'gray',
+        color: theme.colors.onPrimaryContainer,
     },
 
 

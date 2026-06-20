@@ -6,7 +6,8 @@ export type ParametrosRotasStack = {
 }
 
 export type ParametrosRotasDrawer = {
-    DrawerHome: undefined,
+    DrawerInicio: undefined,
+    DrawerConfig: undefined,
 }
 export type ParametrosRotasTabs = {
     TabsHome: undefined,

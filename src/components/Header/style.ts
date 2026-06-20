@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { theme } from "../../styles/theme"
 
 export const styles = StyleSheet.create({
 
@@ -8,18 +9,46 @@ export const styles = StyleSheet.create({
         paddingTop: 50,
         paddingHorizontal:10,
         paddingBottom:10,
-        borderBottomWidth: 0.3,
-        borderBlockColor: 'gray',
+        borderWidth: 0.5,
+        backgroundColor: theme.colors.surfaceBright,
+        borderBottomColor: 'rgba(255, 255, 255, 0.15)',
         alignItems: 'center',
+        
        
     },
-    perfil:{
+    itensesquerda:{
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10
+        gap:10
+        
     },
-    nome:{
+
+    
+    titulo:{
         fontSize: 25,
-        fontWeight:  'bold'
+        fontWeight:  'bold',
+        paddingLeft: 90,
+        color: theme.colors.primary
+        
+    },
+
+    itensdireita:{
+        flexDirection:'row',
+        alignItems: 'center',
+        gap:10
+    },
+    btnSino:{
+        position: 'relative'
+    },
+    btnNotificacao:{
+        position: 'absolute',
+        top: 0,
+        right: 2,             
+        width: 10,
+        height: 10,
+        backgroundColor: theme.colors.error, 
+        borderRadius: 5,
+        borderWidth: 0.5,
+        borderColor: 'rgba(255, 255, 255, 0.2)'
     }
 })

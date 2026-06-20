@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import  Icon  from '@expo/vector-icons/Ionicons';
 import { styles } from './style';
+import { theme } from '../../styles/theme';
 
 interface MetaCardProps {
     titulo: string;
@@ -13,7 +14,7 @@ export const MetaCard = ({ titulo, subtitulo, nomeIcon }: MetaCardProps) => {
         <TouchableOpacity>
             <View style={styles.detalhecard}>
                 <View>
-                    <Icon name={nomeIcon} size={35} color='gray'/>
+                    <Icon name={nomeIcon} size={35} color={theme.colors.onPrimaryContainer}/>
                 </View>
                 <View style={styles.detalhetexto}>
                     <Text style={styles.titulo}>{titulo}</Text>

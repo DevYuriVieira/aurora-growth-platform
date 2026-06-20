@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { theme } from "../../styles/theme";
 
 export const styles = StyleSheet.create({
 
@@ -6,36 +7,39 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        
     
         
     },
     detalhecard:{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.colors.surfaceBright,
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'space-between',
         padding:10,
         borderRadius:10,        
-        width: 350,
-        height:60,
-        paddingLeft: 20
+        width: 345,
+        height:80,
+        paddingLeft: 20,
+        borderWidth: 0.5,
+        borderColor: 'rgba(255, 255, 255, 0.15)'
         
     },
     detalhetexto:{
-        
+        paddingRight:70
         
     },
 
     titulo:{
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#1A1A1A', 
+        color: theme.colors.onPrimary,
         marginBottom: 4
     }, 
 
     subtitulo:{
         fontSize: 13,
-        color: 'gray',
+        color: theme.colors.onPrimaryContainer,
     },
 
 

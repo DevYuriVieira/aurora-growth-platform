@@ -4,6 +4,7 @@ import  Icon  from '@expo/vector-icons/Ionicons';
 import { Home } from '../pages/Home';
 import { View, Text } from 'react-native';
 import { styles } from './style';
+import { theme } from '../styles/theme';
 
 
 const Tabs = createBottomTabNavigator<ParametrosRotasTabs>();
@@ -11,10 +12,13 @@ const Tabs = createBottomTabNavigator<ParametrosRotasTabs>();
 export const TabsRoutes = () => {
     return(
         <Tabs.Navigator  
-               screenOptions={{
+            screenOptions={{
             headerShown: false,
             tabBarStyle:{
             height:80,
+            backgroundColor:theme.colors.surfaceBright,
+            borderTopWidth: 0.5,
+            borderTopColor: 'rgba(255, 255, 255, 0.15)',
 
             }
         }}>
@@ -26,8 +30,8 @@ export const TabsRoutes = () => {
                 title:'',
                 tabBarIcon: ({focused}) => (
                     <View style={styles.iconTabs}>
-                        <Icon name={focused? 'home' : 'home-outline'} size={24} color={focused? '#FF7E5F' : 'gray'}/>
-                        <Text style={[styles.textoTabs, {color: focused ? '#FF7E5F' : 'gray'}]}>Início</Text>
+                        <Icon name={focused? 'home' : 'home-outline'} size={24} color={focused? theme.colors.primary : theme.colors.outline}/>
+                        <Text style={[styles.textoTabs, {color: focused ? theme.colors.primary : theme.colors.outline}]}>Início</Text>
                     </View>
                 )
             }}/>
@@ -39,8 +43,8 @@ export const TabsRoutes = () => {
                 title:'',
                 tabBarIcon: ({focused}) => (
                     <View style={styles.iconTabs}>
-                        <Icon name={focused? 'rocket' : 'rocket-outline'} size={25} color={focused? '#FF7E5F' : 'gray'}/>
-                        <Text style={[styles.textoTabs, {color: focused ? '#FF7E5F' : 'gray'}]}>Metas</Text>
+                        <Icon name={focused? 'rocket' : 'rocket-outline'} size={25} color={focused? theme.colors.primary : theme.colors.outline}/>
+                        <Text style={[styles.textoTabs, {color: focused ? theme.colors.primary : theme.colors.outline}]}>Metas</Text>
                     </View>
                 )
             }}/>
@@ -52,8 +56,8 @@ export const TabsRoutes = () => {
                 title:'',
                 tabBarIcon: ({focused}) => (
                     <View style={styles.iconTabs}>
-                        <Icon name={focused? 'people' : 'people-outline'} size={25} color={focused? '#FF7E5F' : 'gray'}/>
-                        <Text style={[styles.textoTabs, {color: focused ? '#FF7E5F' : 'gray'}]}>Comunidade</Text>
+                        <Icon name={focused? 'people' : 'people-outline'} size={25} color={focused? theme.colors.primary : theme.colors.outline}/>
+                        <Text style={[styles.textoTabs, {color: focused ? theme.colors.primary : theme.colors.outline}]}>Comunidade</Text>
                     </View>
                 )
             }}/>
@@ -65,8 +69,8 @@ export const TabsRoutes = () => {
                 title:'',
                 tabBarIcon: ({focused}) => (
                     <View style={styles.iconTabs}>
-                        <Icon name={focused? 'person-circle' : 'person-circle-outline'} size={25} color={focused? '#FF7E5F' : 'gray'}/>
-                        <Text style={[styles.textoTabs, {color: focused ? '#FF7E5F' : 'gray'}]}>Perfil</Text>
+                        <Icon name={focused? 'stats-chart' : 'stats-chart-outline'} size={25} color={focused? theme.colors.primary : theme.colors.outline}/>
+                        <Text style={[styles.textoTabs, {color: focused ? theme.colors.primary : theme.colors.outline}]}>Mentorias</Text>
                     </View>
                 )
             }}/>

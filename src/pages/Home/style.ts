@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native"
+import { theme } from "../../styles/theme"
 
 export const styles = StyleSheet.create({
 
     container:{
         flex: 1,
-        backgroundColor:'#f6f6ff'
+        backgroundColor:theme.colors.surface
 
     },
 
@@ -16,22 +17,24 @@ export const styles = StyleSheet.create({
 
     contTitulo:{
         fontSize: 30,
+        color: theme.colors.onPrimary,
         fontWeight: 'bold'  
     },
 
     contBox:{
-        backgroundColor: '#FFF',
+        backgroundColor: theme.colors.surfaceBright,
         alignSelf: 'center',
         borderRadius:12,        
         width: 350,
         height:150,
-        shadowColor: '#000000'
+        borderWidth: 0.5,
+        borderColor: 'rgba(255, 255, 255, 0.15)'
     },
 
     contSubtitulo:{
         width:250,
         fontSize:16,
-        color: 'gray'
+        color: theme.colors.onPrimaryContainer
     },
 
     contMetas:{
@@ -43,27 +46,28 @@ export const styles = StyleSheet.create({
     cardconquista:{
         flexDirection: 'row', 
         justifyContent: 'space-around',
+        paddingBottom: 5,
         marginTop: 10, 
-        gap:30
+        gap:30,
+        width:160
         
     },
 
     btnMeta:{
-        alignSelf: 'center',
-        flexDirection: 'row',
-        justifyContent:'center',
-        alignItems: 'center',
-        borderRadius:12,
-        padding:20,
-        marginTop: 15,
-        backgroundColor:'#A53B22',
-        width:300
-        
+    position: 'absolute',
+    bottom: 24,       
+    right: 20,         
+    width: 56,
+    height: 56,
+    borderRadius: 28,  
+    backgroundColor: theme.colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 0.5,
+    borderColor: 'rgba(255, 255, 255, 0.2)'
+    
     },
-    btnMetaText:{
-        color:'#fff',
-        paddingHorizontal:10
-    }
+
 
 
 })
