@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { mentoriasService } from '../../services/mentoriaService';
+import { mentoriasService } from '../../services/mentoriaService/mentoriaService';
 import { Mentoria } from '../../@types/mentoria';
-import { ListaMentoriasStackParamList } from '../../routes/types';
-import { CardMentoria } from '../../components/CardPublicacao/cardMentoria';
+import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
+import { CardMentoria } from '../../components/CardMentoria';
 import Toast from 'react-native-toast-message';
-import { Styles } from './styleListaMentorias';
+import { Styles } from './style';
 
 type NavegacaoProp = NativeStackNavigationProp<ListaMentoriasStackParamList, 'ListaMentorias'>;
 

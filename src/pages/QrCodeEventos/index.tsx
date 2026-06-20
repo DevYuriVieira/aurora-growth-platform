@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-// import QRCode from 'react-native-qrcode-svg';
+import QRCode from 'react-native-qrcode-svg';
 
-import { ListaMentoriasStackParamList } from '../../routes/types';
-import { Styles } from './styleQrCodeEventos';
+import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
+import { Styles } from './style';
 
 type RotaProp = RouteProp<ListaMentoriasStackParamList, 'QRCodeEvento'>;
 type NavegacaoProp = NativeStackNavigationProp<ListaMentoriasStackParamList, 'QRCodeEvento'>;
@@ -22,13 +22,7 @@ export function QRCodeEvento() {
             <Text style={Styles.tituloEvento}>{tituloEvento}</Text>
 
             <View style={Styles.areaQRCode}>
-                {/* <QRCode value={codigoIngresso} size={180} /> */}
-
-                {/* Placeholder enquanto não instala o pacote */}
-                <View style={Styles.quadradoPlaceholder}>
-                    <Text style={Styles.textoPlaceholder}>[ QR CODE REAL ]</Text>
-                    <Text style={Styles.codigoTexto}>{codigoIngresso}</Text>
-                </View>
+                <QRCode value={codigoIngresso} size={180} /> 
             </View>
 
             <TouchableOpacity style={Styles.botaoVoltar} onPress={() => navegacao.popToTop()}>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, ActivityIndicator, Alert, Share } from 'react-native';
+import { View, Text, Modal, TouchableOpacity, ActivityIndicator, Alert, Share } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { ListaMentoriasStackParamList } from '../../routes/types';
-import { mentoriasService } from '../../services/mentoriaService';
+import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
+import { mentoriasService } from '../../services/mentoriaService/mentoriaService';
 import { Mentoria } from '../../@types/mentoria';
 import Toast from 'react-native-toast-message';
-import {Styles} from './styleDetalhesMentorias';
+import {Styles} from './style';
 type RotaProp = RouteProp<ListaMentoriasStackParamList, 'DetalhesMentorias'>;
 type NavegacaoProp = NativeStackNavigationProp<ListaMentoriasStackParamList, 'DetalhesMentorias'>;
 

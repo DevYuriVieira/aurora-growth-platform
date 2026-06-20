@@ -1,10 +1,9 @@
-// src/routes/MentoriasRoutes.tsx
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { ListaMentorias } from '../pages/listaMentorias/listaMentorias';
-import { DetalhesMentorias } from '../pages/detalhesMentorias/detalhesMentorias';
-import { QRCodeEvento } from '../pages/QrCodeEventos/QRcodeEvento';
+import { ListaMentorias } from '../../pages/listaMentorias';
+import { DetalhesMentorias } from '../../pages/detalhesMentorias';
+import { QRCodeEvento } from '../../pages/QrCodeEventos';
 import { ListaMentoriasStackParamList } from './types';
 
 const Stack = createNativeStackNavigator < ListaMentoriasStackParamList > ();
@@ -31,7 +30,7 @@ export function MentoriasRoutes() {
             <Stack.Screen
                 name="QRCodeEvento"
                 component={QRCodeEvento}
-                options={{ title: 'Ingresso Confirmado', headerLeft: () => null }} // Remove o botão voltar no QR Code
+                options={{ title: 'Ingresso Confirmado', headerLeft: () => null }}
             />
         </Stack.Navigator>
     );

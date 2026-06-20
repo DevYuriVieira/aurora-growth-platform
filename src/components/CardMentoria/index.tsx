@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Mentoria } from '../../@types/mentoria';
-import {Styles} from './styleCardMentorias';
+import {Styles} from './style';
 
 interface CardMentoriaProps {
   dados: Mentoria;
