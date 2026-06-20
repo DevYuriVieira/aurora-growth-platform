@@ -29,6 +29,7 @@ import { CardPublicacao } from '../../components/CardPublicacao';
 import { FiltroArea } from '../../components/FiltroComunidade/type';
 import { FiltroComunidade } from '../../components/FiltroComunidade';
 import { styles } from './style';
+import { DetalhesPublicacao } from '../DetalhesPublicacao';
 
 const areasFormulario: AreaComunidade[] = [
     'educacao',
@@ -59,6 +60,8 @@ export function Comunidade() {
     const [tipoFormulario, setTipoFormulario] =
         useState<TipoPost>('historia');
     const [publicacaoEmEdicao, setPublicacaoEmEdicao] =
+        useState<PostComunidade | null>(null);
+    const [publicacaoSelecionada, setPublicacaoSelecionada] =
         useState<PostComunidade | null>(null);
 
     function limparFormulario() {
@@ -248,6 +251,15 @@ export function Comunidade() {
         );
     }
 
+    if (publicacaoSelecionada) {
+        return (
+            <DetalhesPublicacao
+                publicacao={publicacaoSelecionada}
+                aoVoltar={() => setPublicacaoSelecionada(null)}
+            />
+        );
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.cabecalho}>
@@ -279,6 +291,7 @@ export function Comunidade() {
                 renderItem={({ item }) => (
                     <CardPublicacao
                         publicacao={item}
+                        aoPressionar={setPublicacaoSelecionada}
                         aoEditar={abrirEdicao}
                         aoExcluir={confirmarExclusao}
                     />
