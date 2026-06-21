@@ -22,7 +22,7 @@ export const mentoriasService = {
 
   atualizar: async (id: string, dadosAtualizados: Partial<Mentoria>): Promise<Mentoria> => {
     try {
-      const response = await api.patch<Mentoria>(`/mentorias/${id}`, dadosAtualizados);
+      const response = await api.put<Mentoria>(`/mentorias/${id}`, dadosAtualizados);
       return response.data;
     } catch (erro) {
       throw new Error('Erro ao atualizar os detalhes da mentoria.');
@@ -39,15 +39,11 @@ export const mentoriasService = {
   
   inscreverNoEvento: async (mentoriaId: string): Promise<RespostaInscricao> => {
     try {
-      const dadosInscricao = {
-        id: String(Date.now()),
-        mentoriaId,
-        dataInscricao: new Date().toISOString()
-      };
-      await api.post('/inscricoes', dadosInscricao);
+      const dadosInscricao = String(Date.now());
+      
       return {
         sucesso: true,
-        codigoIngresso: `AURORA-${mentoriaId}-${dadosInscricao.id}`
+        codigoIngresso: `AURORA-${mentoriaId}-${dadosInscricao}`
       };
     } catch (erro) {
       throw new Error('Falha ao registrar inscrição no servidor.');
