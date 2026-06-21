@@ -12,12 +12,17 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Toast from 'react-native-toast-message';
 
-import { Comunidade } from './src/pages/Comunidade';
+import { RotaPrivadaAdmin } from './src/components/RotaPrivadaAdmin';
+import { AdminComunidade } from './src/pages/AdminComunidade';
+import { usuarioComumMock } from './src/services/usuarioMock';
 
 export default function App() {
   return (
     <>
-      <Comunidade />
+      <RotaPrivadaAdmin usuario={usuarioComumMock}>
+        <AdminComunidade />
+      </RotaPrivadaAdmin>
+
       <Toast />
     </>
   );
