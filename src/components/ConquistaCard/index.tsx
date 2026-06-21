@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ImageSourcePropType } from 'react-native';
 import { styles } from './style';
 import Animated, { useSharedValue, useAnimatedStyle, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { useEffect } from 'react';
@@ -6,10 +6,11 @@ import { useEffect } from 'react';
 interface ConquistaCardProps {
     titulo: string;
     subtitulo: string;
+    imagem: ImageSourcePropType;
     
 }
 
-export const ConquistaCard = ({ titulo, subtitulo }: ConquistaCardProps) => {
+export const ConquistaCard = ({ titulo, subtitulo, imagem }: ConquistaCardProps) => {
 
     const posicao = useSharedValue(0);
     
@@ -31,15 +32,18 @@ export const ConquistaCard = ({ titulo, subtitulo }: ConquistaCardProps) => {
         };
     });
 
-
-
     return (
         <View style={styles.card}>
             <View >
-                <Animated.Image source={require('../../assets/med1.png')} style={[styles.imagcard, estiloAnimado]} resizeMode='contain'/>
+                <Animated.Image source={imagem} 
+                    style={[styles.imagcard, estiloAnimado]} 
+                    resizeMode='contain'
+                />
             </View>
-            <Text style={styles.titulo}>{titulo}</Text>
-            <Text style={styles.subtitulo}>{subtitulo}</Text>
+            <View style={styles.textos}>
+                <Text style={styles.titulo}>{titulo}</Text>
+                <Text style={styles.subtitulo}>{subtitulo}</Text>
+            </View>
         </View>
     );
 };

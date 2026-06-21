@@ -28,7 +28,8 @@ export const styles = StyleSheet.create({
         width: 350,
         height:150,
         borderWidth: 0.5,
-        borderColor: 'rgba(255, 255, 255, 0.15)'
+        borderColor: 'rgba(255, 255, 255, 0.15)',
+        marginBottom:18
     },
 
     contSubtitulo:{
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
 
     contMetas:{
     paddingHorizontal: 20,
-    marginVertical:20,
+    marginVertical:7,
     gap:15
     },
 
