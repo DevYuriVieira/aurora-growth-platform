@@ -3,13 +3,13 @@ import { DrawerHeaderProps } from '@react-navigation/drawer';
 import { TouchableOpacity, View, Text } from "react-native";
 import { styles } from './style';
 import { theme } from '../../styles/theme';
-import { useState } from 'react';
+import { useNotification } from '../../contexts/NotificationContext';
 
 
 
 export const Header = ({navigation}: DrawerHeaderProps) => {
 
-    const [temNotificacao, setTemNotificacao] = useState(true)
+    const { notificacoesNaoLidas, limparNotificacoes } = useNotification();
 
     return (
         <View style={styles.container}>
@@ -20,9 +20,9 @@ export const Header = ({navigation}: DrawerHeaderProps) => {
                 <Text style={styles.titulo}>Aurora</Text>
             </View>
             <View style={styles.itensdireita}>
-                <TouchableOpacity style={styles.btnSino} onPress={( () => setTemNotificacao(false))}>
+                <TouchableOpacity style={styles.btnSino} onPress={( () => limparNotificacoes())}>
                     <Icon name='notifications' size={25} color={theme.colors.outline}/>
-                    {temNotificacao && (
+                    {notificacoesNaoLidas > 0 && (
                         <View style={styles.btnNotificacao}/>
                     )}
                 </TouchableOpacity>

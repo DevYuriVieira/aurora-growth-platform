@@ -5,6 +5,8 @@ import { MetaCard } from '../../components/MetaCard/Index';
 import { ConquistaCard } from '../../components/ConquistaCard';
 import { theme } from '../../styles/theme';
 import { XpCard } from '../../components/XpCard';
+import { gerarConquistas } from '../../data/conquistas';
+import { useProgress } from '../../contexts/ProgressContext';
 
 export const Home = () => {
 
@@ -15,13 +17,14 @@ export const Home = () => {
         { id: '4', titulo: 'Estudar Programação', subtitulo: '2 horas', icone: 'code-slash' },
     ];
 
-    const minhasConquistas = [
-        { id: '1', titulo: 'Pioneiro', subtitulo: 'Criou 5 metas' },
-        { id: '2', titulo: 'Foco Total', subtitulo: '7 dias seguidos' },
-        { id: '3', titulo: 'Madrugador', subtitulo: 'Acordou às 5h' },
-        { id: '4', titulo: 'Imparável', subtitulo: '30 dias de fogo' },
-    ];
+    const { xpTotal, nivel, addXp, resetProgress } = useProgress(); 
 
+
+    const catalogo = gerarConquistas(minhasMetas.length, nivel);
+
+    const minhasConquistasDesbloqueadas = catalogo.filter(
+        (conquista) => conquista.desbloqueada === true
+    );
 
     const agruparEmColunas = (lista: typeof minhasMetas, tamanho: number) => {
         const colunas = [];
@@ -51,10 +54,26 @@ export const Home = () => {
 
                         <View style={styles.contBox}>
                             <XpCard 
-                                 porcentagem={42} 
-                                 nivel={2}  
-                                 xp={2450} 
+                                 xpTotal={xpTotal} 
                             />
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 15, marginVertical: 15 }}>
+                            <TouchableOpacity 
+                                style={{ backgroundColor: '#4CAF50', padding: 12, borderRadius: 8 }}
+                                
+                                onPress={() => addXp(50)} 
+                            >
+                                <Text style={{ color: 'white', fontWeight: 'bold' }}>Ganhar +50 XP</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                 style={{ backgroundColor: '#F44336', padding: 12, borderRadius: 8 }}
+                                 
+                                 onPress={() => resetProgress()} 
+                             >
+                                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Zerar Progresso</Text>
+                             </TouchableOpacity>
+
                         </View>
 
                         <View style={styles.contMetas}>
@@ -67,7 +86,7 @@ export const Home = () => {
                                 showsHorizontalScrollIndicator={false}
                                 contentContainerStyle={{ gap: 16, paddingRight: 20 }}
                                 renderItem={({ item: coluna }) => (
-                                    <View style={{ flexDirection: 'column', gap: 12, paddingBottom: 2 }}>
+                                    <View style={{ flexDirection: 'column', gap: 15, paddingBottom: 2 }}>
                                         {coluna.map((meta) => (
                                             <MetaCard
                                                 key={meta.id}
@@ -84,7 +103,7 @@ export const Home = () => {
                         <View style={styles.contMetas}>
                             <Text style={styles.contSubtitulo}>Conquistas desbloqueadas</Text>
                             <FlatList
-                                data={minhasConquistas}
+                                data={minhasConquistasDesbloqueadas}
                                 keyExtractor={(item) => item.id}
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
@@ -94,13 +113,12 @@ export const Home = () => {
                                         <ConquistaCard 
                                             titulo={item.titulo} 
                                             subtitulo={item.subtitulo} 
+                                            imagem={item.imagem}
                                         />
                                     </View>
                                 )}
                             />
                         </View>
-
-
                     </View>
                 </ScrollView>
                 <TouchableOpacity>

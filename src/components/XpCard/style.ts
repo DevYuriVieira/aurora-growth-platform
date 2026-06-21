@@ -13,6 +13,7 @@ export const styles = StyleSheet.create ({
         borderColor: 'rgba(255, 255, 255, 0.15)',
         padding:20,
         
+        
     },
     texto:{
         color: theme.colors.primary,
