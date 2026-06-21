@@ -33,13 +33,13 @@ export default function Profile() {
       }
     }
     loadSecureData();
-  } Packing, []);
+  }, []);
 
   async function handleSelectImage(useCamera: boolean) {
     try {
       setLoading(true);
-      const hasPermission = useCamera 
-        ? await ImagePicker.requestCameraPermissionsAsync() 
+      const hasPermission = useCamera
+        ? await ImagePicker.requestCameraPermissionsAsync()
         : await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (!hasPermission.granted) {
@@ -76,7 +76,7 @@ export default function Profile() {
   return (
     <View style={styles.container}>
       <Image source={{ uri: user.avatarUrl }} style={styles.avatar} />
-      
+
       {loading && <ActivityIndicator size="small" color="#0052CC" style={styles.loader} />}
 
       <Text style={styles.name}>{user.name}</Text>

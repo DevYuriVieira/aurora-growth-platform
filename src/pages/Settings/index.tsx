@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Switch, Alert } from 'react-native';
-import useNetInfo from '@react-native-community/netinfo';
+import { useNetInfo } from '@react-native-community/netinfo';
 import Toast from 'react-native-toast-message';
 
 export default function Settings() {
@@ -46,7 +46,7 @@ export default function Settings() {
           thumbColor={notificationsEnabled ? '#FFF' : '#f4f3f4'}
         />
       </View>
-      
+
       <Toast />
     </View>
   );
