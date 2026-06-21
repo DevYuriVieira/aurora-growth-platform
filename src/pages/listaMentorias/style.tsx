@@ -1,30 +1,33 @@
 import { StyleSheet } from "react-native";
+import { theme } from "../../styles/theme";
 
 export const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F7FA',
+  container: { 
+    flex: 1, 
+    backgroundColor: theme.colors.surface, 
   },
-  centro: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5F7FA',
+  centro: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: theme.colors.surface,
+    gap: 12
   },
   textoLoading: {
-    marginTop: 10,
-    color: '#666',
+    color: theme.colors.onSurfaceVariant,
     fontSize: 14,
+    fontWeight: '500'
   },
   centroVazio: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 32,
+    paddingHorizontal: 32
   },
-  textoVazio: {
+  textoVazio: { 
+    color: theme.colors.onSurfaceVariant, 
+    fontSize: 16, 
     textAlign: 'center',
-    color: '#999',
-    fontSize: 16,
-  },
+    lineHeight: 22
+  }
 });

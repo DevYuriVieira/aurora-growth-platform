@@ -5,6 +5,7 @@ import { ListaMentorias } from '../../pages/listaMentorias';
 import { DetalhesMentorias } from '../../pages/detalhesMentorias';
 import { QRCodeEvento } from '../../pages/QrCodeEventos';
 import { ListaMentoriasStackParamList } from './types';
+import { theme } from '../../styles/theme';
 
 const Stack = createNativeStackNavigator < ListaMentoriasStackParamList > ();
 
@@ -12,8 +13,8 @@ export function MentoriasRoutes() {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerStyle: { backgroundColor: '#007AEE' },
-                headerTintColor: '#FFF',
+                headerStyle: { backgroundColor: theme.colors.surfaceContainerHigh },
+                headerTintColor: theme.colors.primary,
                 headerTitleAlign: 'center'
             }}
         >
