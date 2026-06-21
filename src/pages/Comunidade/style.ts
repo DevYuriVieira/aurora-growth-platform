@@ -190,4 +190,20 @@ export const styles = StyleSheet.create({
         borderColor: '#E5E7EB',
         marginBottom: 8,
     },
+
+    caixaErroFormulario: {
+        backgroundColor: '#FEE2E2',
+        borderWidth: 1,
+        borderColor: '#FCA5A5',
+        borderRadius: 12,
+        padding: 12,
+        marginBottom: 14,
+    },
+
+    textoErroFormulario: {
+        color: '#991B1B',
+        fontSize: 14,
+        fontWeight: '600',
+        lineHeight: 20,
+    },
 });

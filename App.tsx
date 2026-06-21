@@ -10,17 +10,15 @@ import { StyleSheet, Text, View } from 'react-native';
 //   );
 // }
 
+import Toast from 'react-native-toast-message';
+
 import { Comunidade } from './src/pages/Comunidade';
 
 export default function App() {
-  return <Comunidade />;
+  return (
+    <>
+      <Comunidade />
+      <Toast />
+    </>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

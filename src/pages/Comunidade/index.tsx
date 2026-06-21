@@ -1,3 +1,4 @@
+import Toast from 'react-native-toast-message';
 import { useEffect, useMemo, useState } from 'react';
 import {
     ActivityIndicator,
@@ -55,6 +56,7 @@ export function Comunidade() {
     const [modalVisivel, setModalVisivel] = useState(false);
     const [titulo, setTitulo] = useState('');
     const [conteudo, setConteudo] = useState('');
+    const [erroFormulario, setErroFormulario] = useState('');
     const [areaFormulario, setAreaFormulario] =
         useState<AreaComunidade>('carreira');
     const [tipoFormulario, setTipoFormulario] =
@@ -64,12 +66,31 @@ export function Comunidade() {
     const [publicacaoSelecionada, setPublicacaoSelecionada] =
         useState<PostComunidade | null>(null);
 
+    function mostrarToastSucesso(titulo: string, mensagem: string) {
+        Toast.show({
+            type: 'success',
+            text1: titulo,
+            text2: mensagem,
+            position: 'top',
+        });
+    }
+
+    function mostrarToastErro(titulo: string, mensagem: string) {
+        Toast.show({
+            type: 'error',
+            text1: titulo,
+            text2: mensagem,
+            position: 'top',
+        });
+    }
+
     function limparFormulario() {
         setTitulo('');
         setConteudo('');
         setAreaFormulario('carreira');
         setTipoFormulario('historia');
         setPublicacaoEmEdicao(null);
+        setErroFormulario('');
     }
 
     function abrirEdicao(publicacao: PostComunidade) {
@@ -108,12 +129,12 @@ export function Comunidade() {
             setPublicacoes(publicacoesAtualizadas);
             await salvarPublicacoes(publicacoesAtualizadas);
 
-            Alert.alert(
+            mostrarToastSucesso(
                 'Publicação excluída',
                 'A publicação foi removida do mural.'
             );
         } catch {
-            Alert.alert(
+            mostrarToastErro(
                 'Erro ao excluir',
                 'Não foi possível excluir a publicação agora.'
             );
@@ -135,9 +156,11 @@ export function Comunidade() {
             const primeiraMensagemErro =
                 validacao.error.issues[0]?.message || 'Verifique os campos informados.';
 
-            Alert.alert('Dados inválidos', primeiraMensagemErro);
+            setErroFormulario(primeiraMensagemErro);
             return;
         }
+
+        setErroFormulario('');
 
         if (publicacaoEmEdicao) {
             const publicacoesAtualizadas = publicacoes.map((publicacao) => {
@@ -160,7 +183,7 @@ export function Comunidade() {
             limparFormulario();
             setModalVisivel(false);
 
-            Alert.alert(
+            mostrarToastSucesso(
                 'Publicação atualizada',
                 'As alterações foram salvas com sucesso.'
             );
@@ -188,7 +211,7 @@ export function Comunidade() {
         limparFormulario();
         setModalVisivel(false);
 
-        Alert.alert(
+        mostrarToastSucesso(
             'Publicação criada',
             'Seu recomeço foi compartilhado no mural.'
         );
@@ -202,7 +225,7 @@ export function Comunidade() {
 
             setPublicacoes(publicacoesSalvas);
         } catch {
-            Alert.alert(
+            mostrarToastErro(
                 'Erro ao carregar',
                 'Não foi possível carregar as publicações da comunidade.'
             );
@@ -223,7 +246,7 @@ export function Comunidade() {
 
             setPublicacoes(publicacoesSalvas);
         } catch {
-            Alert.alert(
+            mostrarToastErro(
                 'Erro ao atualizar',
                 'Não foi possível atualizar o mural agora.'
             );
@@ -327,6 +350,12 @@ export function Comunidade() {
                         <Text style={styles.modalTitulo}>
                             {publicacaoEmEdicao ? 'Editar publicação' : 'Compartilhar recomeço'}
                         </Text>
+
+                        {erroFormulario !== '' && (
+                            <View style={styles.caixaErroFormulario}>
+                                <Text style={styles.textoErroFormulario}>{erroFormulario}</Text>
+                            </View>
+                        )}
 
                         <Text style={styles.labelCampo}>Título</Text>
                         <TextInput
