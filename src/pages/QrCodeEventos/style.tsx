@@ -97,7 +97,9 @@ export const Styles = StyleSheet.create({
     backgroundColor: theme.colors.surfaceBright, 
     paddingHorizontal: 32, 
     paddingVertical: 16, 
-    borderRadius: 8, 
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor:theme.colors.surfaceContainerLow,
     width: '100%', 
     alignItems: 'center' 
   },
