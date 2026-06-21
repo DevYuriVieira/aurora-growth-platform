@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
 import { mentoriasService } from '../../services/mentoriaService/mentoriaService';
+import { useNotification } from '../../contexts/notificacaoContext';
 import { Mentoria } from '../../@types/mentoria';
 import Toast from 'react-native-toast-message';
 import {Styles} from './style';
@@ -15,6 +16,7 @@ export function DetalhesMentorias() {
     const rota = useRoute<RotaProp>();
     const navegacao = useNavigation<NavegacaoProp>();
     const { mentoriaId } = rota.params;
+    const { adicionarNotificacao } = useNotification();
 
     const [carregando, setCarregando] = useState(true);
     const [inscrevendo, setInscrevendo] = useState(false);
@@ -61,8 +63,9 @@ export function DetalhesMentorias() {
             const resposta = await mentoriasService.inscreverNoEvento(mentoriaId);
 
             if (resposta.sucesso && mentoria) {
-                Alert.alert('Inscrição Confirmada!', 'O evento foi adicionado à sua agenda.');
+                adicionarNotificacao();
 
+                Alert.alert('Inscrição Confirmada!', 'O evento foi adicionado à sua agenda.');
                 navegacao.navigate('QRCodeEvento', {
                     codigoIngresso: resposta.codigoIngresso,
                     tituloEvento: mentoria.titulo
