@@ -2,6 +2,7 @@
   "expo": {
     "name": "aurora-growth-platform",
     "slug": "aurora-growth-platform",
+    "scheme": "aurora-growth", 
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,8 +24,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.auroragrowthplatform"
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"

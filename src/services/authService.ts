@@ -2,7 +2,7 @@ import { Usuario } from '../@types/user';
 import { LoginFormData } from '../schemas/loginSchema';
 import { RegisterFormData } from '../schemas/registerSchema';
 
-const API_URL = 'https://6a38a16064a2d82692229b3c.mockapi.io/users';
+const API_URL = 'https://6a38a16064a2d82692229b3c.mockapi.io';
 
 export async function signIn(dados: LoginFormData): Promise<{ usuario: Usuario; token: string }> {
   try {

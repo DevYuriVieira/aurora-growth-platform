@@ -1,8 +1,10 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type ParametrosRotasStack = {
+    StackLogin: undefined,
     StackHome: undefined,
-    StackTabsRoutes: undefined
+    StackTabsRoutes: undefined,
+    StackNotificacoes: undefined;
 }
 
 export type ParametrosRotasDrawer = {
@@ -28,5 +30,6 @@ declare global {
         interface RootParamList extends ParametrosRotasStack{}
         interface RootParamList extends ParametrosRotasTabs{}
         interface RootParamList extends ParametrosRotasDrawer{}
+        interface RootParamList extends ListaMentoriasStackParamList {}
     }
 }
