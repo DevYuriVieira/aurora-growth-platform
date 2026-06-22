@@ -1,4 +1,3 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type ParametrosRotasStack = {
     AuthRoutes: undefined;
@@ -13,6 +12,9 @@ export type ParametrosRotasDrawer = {
     DrawerInicio: undefined,
     DrawerConfig: undefined,
     DrawerPainelMentor: undefined,
+    DrawerSettings:undefined,
+    DrawerProfile:undefined,
+    DrawerMap:undefined,
 }
 
 export type ParametrosRotasTabs = {
