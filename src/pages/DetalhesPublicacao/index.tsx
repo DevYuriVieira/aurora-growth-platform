@@ -12,6 +12,7 @@ import { EtiquetaArea } from '../../components/EtiquetaArea';
 import { buscarPublicacoesSalvas } from '../../services/comunidadeStorageService';
 import { ParametrosRotasStack } from '../../routes/navigation';
 import { styles } from './style';
+import { theme } from '../../styles/theme';
 
 type DetalhesPublicacaoRouteProp = RouteProp<
     ParametrosRotasStack,
@@ -50,7 +51,7 @@ export function DetalhesPublicacao() {
     if (carregando) {
         return (
             <View style={styles.estadoCentralizado}>
-                <ActivityIndicator size="large" color="#2563EB" />
+                <ActivityIndicator size="large" color={theme.colors.primary} />
                 <Text style={styles.textoEstado}>Carregando publicação...</Text>
             </View>
         );
@@ -91,9 +92,9 @@ export function DetalhesPublicacao() {
             </TouchableOpacity>
 
             <View style={styles.card}>
-                <Text style={styles.autor}>{publicacao.usuario}</Text>
+                <Text style={styles.usuario}>{publicacao.usuario}</Text>
 
-                <Text style={styles.nivel}>
+                <Text style={styles.nivelUsuario}>
                     Nível {publicacao.nivelUsuario} na Jornada Aurora
                 </Text>
 
@@ -106,12 +107,12 @@ export function DetalhesPublicacao() {
                 <Text style={styles.conteudo}>{publicacao.conteudo}</Text>
 
                 <View style={styles.linhaInfo}>
-                    <Text style={styles.xp}>+{publicacao.xpRecompensa} XP</Text>
+                    <Text style={styles.xpRecompensa}>+{publicacao.xpRecompensa} XP</Text>
 
-                    <Text style={styles.data}>{publicacao.dataCriacao}</Text>
+                    <Text style={styles.dataCriacao}>{publicacao.dataCriacao}</Text>
                 </View>
 
-                <Text style={[styles.data, { marginTop: 10 }]}>
+                <Text style={[styles.dataCriacao, { marginTop: 10 }]}>
                     Tipo: {TiposPostComunidade[publicacao.tipoPost]}
                 </Text>
             </View>

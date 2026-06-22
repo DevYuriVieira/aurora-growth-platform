@@ -33,6 +33,7 @@ import { styles } from './style';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ParametrosRotasStack } from '../../routes/navigation';
+import { theme } from '../../styles/theme';
 
 type NavegacaoComunidadeProps =
     NativeStackNavigationProp<ParametrosRotasStack>;
@@ -278,7 +279,7 @@ export function Comunidade() {
     if (carregando) {
         return (
             <View style={styles.estadoCentralizado}>
-                <ActivityIndicator size="large" color="#2563EB" />
+                <ActivityIndicator size="large" color={theme.colors.primary} />
                 <Text style={styles.textoEstado}>Carregando mural...</Text>
             </View>
         );
@@ -341,11 +342,7 @@ export function Comunidade() {
                     </View>
                 }
             />
-            <Modal
-                visible={modalVisivel}
-                animationType="slide"
-                transparent
-            >
+            <Modal visible={modalVisivel} animationType="slide" transparent>
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalConteudo}>
                         <Text style={styles.modalTitulo}>
@@ -364,7 +361,7 @@ export function Comunidade() {
                             value={titulo}
                             onChangeText={setTitulo}
                             placeholder="Ex: Consegui minha primeira entrevista"
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor={theme.colors.outline}
                         />
 
                         <Text style={styles.labelCampo}>Conteúdo</Text>
@@ -373,86 +370,89 @@ export function Comunidade() {
                             value={conteudo}
                             onChangeText={setConteudo}
                             placeholder="Conte sua história, dúvida ou conquista..."
-                            placeholderTextColor="#9CA3AF"
+                            placeholderTextColor={theme.colors.outline}
                             multiline
                         />
-                    </View>
-                    <Text style={styles.labelCampo}>Área</Text>
 
-                    <View style={[styles.opcoesContainer, styles.caixaOpcoes]}>
-                        {areasFormulario.map((area) => {
-                            const estaSelecionada = areaFormulario === area;
+                        <Text style={styles.labelCampo}>Área</Text>
 
-                            return (
-                                <TouchableOpacity
-                                    key={area}
-                                    style={[
-                                        styles.botaoOpcao,
-                                        estaSelecionada && styles.botaoOpcaoAtivo,
-                                    ]}
-                                    onPress={() => setAreaFormulario(area)}
-                                >
-                                    <Text
+                        <View style={[styles.opcoesContainer, styles.caixaOpcoes]}>
+                            {areasFormulario.map((area) => {
+                                const estaSelecionada = areaFormulario === area;
+
+                                return (
+                                    <TouchableOpacity
+                                        key={area}
                                         style={[
-                                            styles.textoOpcao,
-                                            estaSelecionada && styles.textoOpcaoAtivo,
+                                            styles.botaoOpcao,
+                                            estaSelecionada && styles.botaoOpcaoAtivo,
                                         ]}
+                                        onPress={() => setAreaFormulario(area)}
                                     >
-                                        {[TiposAreaComunidade[area]]}
-                                    </Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                    </View>
-                    <Text style={styles.labelCampo}>Tipo</Text>
+                                        <Text
+                                            style={[
+                                                styles.textoOpcao,
+                                                estaSelecionada && styles.textoOpcaoAtivo,
+                                            ]}
+                                        >
+                                            {TiposAreaComunidade[area]}
+                                        </Text>
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
 
-                    <View style={[styles.opcoesContainer, styles.caixaOpcoes]}>
-                        {tiposFormulario.map((tipo) => {
-                            const estaSelecionado = tipoFormulario === tipo;
+                        <Text style={styles.labelCampo}>Tipo</Text>
 
-                            return (
-                                <TouchableOpacity
-                                    key={tipo}
-                                    style={[
-                                        styles.botaoOpcao,
-                                        estaSelecionado && styles.botaoOpcaoAtivo,
-                                    ]}
-                                    onPress={() => setTipoFormulario(tipo)}
-                                >
-                                    <Text
+                        <View style={[styles.opcoesContainer, styles.caixaOpcoes]}>
+                            {tiposFormulario.map((tipo) => {
+                                const estaSelecionado = tipoFormulario === tipo;
+
+                                return (
+                                    <TouchableOpacity
+                                        key={tipo}
                                         style={[
-                                            styles.textoOpcao,
-                                            estaSelecionado && styles.textoOpcaoAtivo,
+                                            styles.botaoOpcao,
+                                            estaSelecionado && styles.botaoOpcaoAtivo,
                                         ]}
+                                        onPress={() => setTipoFormulario(tipo)}
                                     >
-                                        {TiposPostComunidade[tipo]}
-                                    </Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                    </View>
-                    <View style={styles.modalAcoes}>
-                        <TouchableOpacity
-                            style={[styles.botaoModal, styles.botaoCancelar]}
-                            onPress={() => {
-                                limparFormulario();
-                                setModalVisivel(false);
-                            }}
-                        >
-                            <Text style={styles.textoCancelar}>Cancelar</Text>
-                        </TouchableOpacity>
+                                        <Text
+                                            style={[
+                                                styles.textoOpcao,
+                                                estaSelecionado && styles.textoOpcaoAtivo,
+                                            ]}
+                                        >
+                                            {TiposPostComunidade[tipo]}
+                                        </Text>
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
 
-                        <TouchableOpacity
-                            style={[styles.botaoModal, styles.botaoSalvar]}
-                            onPress={salvarPublicacao}
-                        >
-                            <Text style={styles.textoSalvar}>
-                                {publicacaoEmEdicao ? 'Salvar alterações' : 'Publicar'}
-                            </Text>
-                        </TouchableOpacity>
+                        <View style={styles.modalAcoes}>
+                            <TouchableOpacity
+                                style={[styles.botaoModal, styles.botaoCancelar]}
+                                onPress={() => {
+                                    limparFormulario();
+                                    setModalVisivel(false);
+                                }}
+                            >
+                                <Text style={styles.textoCancelar}>Cancelar</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={[styles.botaoModal, styles.botaoCancelar]}
+                                onPress={salvarPublicacao}
+                            >
+                                <Text style={styles.textoSalvar}>
+                                    {publicacaoEmEdicao ? 'Salvar alterações' : 'Publicar'}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
-            </Modal >
+            </Modal>
         </View>
     );
 }

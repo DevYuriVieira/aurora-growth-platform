@@ -1,26 +1,29 @@
 import { StyleSheet } from 'react-native';
+import { theme } from '../../styles/theme';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: theme.colors.surface,
         paddingHorizontal: 18,
         paddingTop: 60,
     },
+
     cabecalho: {
-        gap: 8,
+        marginBottom: 4,
     },
 
     titulo: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 28,
         fontWeight: '800',
     },
 
     subtitulo: {
-        color: '#4B5563',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 15,
         lineHeight: 22,
+        marginTop: 8,
     },
 
     listaConteudo: {
@@ -29,40 +32,41 @@ export const styles = StyleSheet.create({
 
     estadoCentralizado: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: theme.colors.surface,
         alignItems: 'center',
         justifyContent: 'center',
         gap: 12,
-        paddingHorizontal: 24,
     },
 
     textoEstado: {
-        color: '#4B5563',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 16,
     },
 
     estadoVazio: {
-        marginTop: 48,
         alignItems: 'center',
-        paddingHorizontal: 24,
+        justifyContent: 'center',
+        paddingVertical: 48,
+        paddingHorizontal: 20,
     },
 
     tituloVazio: {
-        color: '#111827',
-        fontSize: 18,
-        fontWeight: '700',
-        marginBottom: 8,
-    },
-
-    textoVazio: {
-        color: '#6B7280',
-        fontSize: 15,
-        lineHeight: 22,
+        color: theme.colors.onSurface,
+        fontSize: 20,
+        fontWeight: '800',
         textAlign: 'center',
     },
 
+    textoVazio: {
+        color: theme.colors.onSurfaceVariant,
+        fontSize: 15,
+        lineHeight: 22,
+        textAlign: 'center',
+        marginTop: 8,
+    },
+
     botaoNovaPublicacao: {
-        backgroundColor: '#111827',
+        backgroundColor: theme.colors.primary,
         borderRadius: 14,
         paddingVertical: 14,
         alignItems: 'center',
@@ -70,54 +74,57 @@ export const styles = StyleSheet.create({
     },
 
     textoBotaoNovaPublicacao: {
-        color: '#FFFFFF',
+        color: theme.colors.onPrimary,
         fontSize: 15,
         fontWeight: '700',
     },
 
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.45)',
+        backgroundColor: 'rgba(0,0,0,0.65)',
         justifyContent: 'flex-end',
     },
 
     modalConteudo: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.colors.surfaceContainerHigh,
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
         paddingHorizontal: 20,
         paddingTop: 24,
         paddingBottom: 32,
+        borderWidth: 1,
+        borderColor: theme.colors.surfaceContainerLow,
+        maxHeight: '90%',
     },
 
     modalTitulo: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 22,
         fontWeight: '800',
         marginBottom: 18,
     },
 
     labelCampo: {
-        color: '#374151',
+        color: theme.colors.onSurface,
         fontSize: 14,
         fontWeight: '700',
         marginBottom: 8,
-        marginTop: 10,
+        marginTop: 12,
     },
 
     input: {
-        backgroundColor: '#F9FAFB',
+        backgroundColor: theme.colors.surfaceBright,
+        color: theme.colors.onSurface,
         borderWidth: 1,
-        borderColor: '#E5E7EB',
-        borderRadius: 12,
+        borderColor: theme.colors.surfaceContainerLow,
+        borderRadius: 14,
         paddingHorizontal: 14,
         paddingVertical: 12,
-        color: '#111827',
         fontSize: 15,
     },
 
     textArea: {
-        minHeight: 90,
+        minHeight: 100,
         textAlignVertical: 'top',
     },
 
@@ -127,81 +134,86 @@ export const styles = StyleSheet.create({
         gap: 8,
     },
 
+    caixaOpcoes: {
+        backgroundColor: theme.colors.surfaceBright,
+        borderRadius: 14,
+        padding: 12,
+        borderWidth: 1,
+        borderColor: theme.colors.surfaceContainerLow,
+        marginBottom: 8,
+    },
+
     botaoOpcao: {
-        backgroundColor: '#F3F4F6',
-        borderRadius: 999,
+        backgroundColor: theme.colors.surfaceContainerHigh,
         paddingHorizontal: 12,
         paddingVertical: 8,
+        borderRadius: 999,
+        borderWidth: 1,
+        borderColor: theme.colors.surfaceContainerLow,
     },
 
     botaoOpcaoAtivo: {
-        backgroundColor: '#2563EB',
+        backgroundColor: theme.colors.primary,
+        borderColor: theme.colors.primary,
     },
 
     textoOpcao: {
-        color: '#374151',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 13,
         fontWeight: '600',
     },
 
     textoOpcaoAtivo: {
-        color: '#FFFFFF',
+        color: theme.colors.onPrimary,
     },
 
     modalAcoes: {
         flexDirection: 'row',
         gap: 12,
-        marginTop: 24,
+        marginTop: 18,
     },
 
     botaoModal: {
         flex: 1,
-        height: 48,
-        borderRadius: 12,
+        paddingVertical: 14,
+        borderRadius: 14,
         alignItems: 'center',
         justifyContent: 'center',
     },
 
     botaoCancelar: {
-        backgroundColor: '#F3F4F6',
+        backgroundColor: theme.colors.surfaceBright,
+        borderWidth: 1,
+        borderColor: theme.colors.surfaceContainerLow,
     },
 
     botaoSalvar: {
-        backgroundColor: '#111827',
+        backgroundColor: theme.colors.primary,
     },
 
     textoCancelar: {
-        color: '#374151',
+        color: theme.colors.onSurface,
         fontSize: 15,
         fontWeight: '700',
     },
 
     textoSalvar: {
-        color: '#FFFFFF',
+        color: theme.colors.onPrimary,
         fontSize: 15,
         fontWeight: '700',
     },
 
-    caixaOpcoes: {
-        backgroundColor: '#F9FAFB',
-        borderRadius: 14,
-        padding: 12,
-        borderWidth: 1,
-        borderColor: '#E5E7EB',
-        marginBottom: 8,
-    },
-
     caixaErroFormulario: {
-        backgroundColor: '#FEE2E2',
+        backgroundColor: theme.colors.primaryContainer,
         borderWidth: 1,
-        borderColor: '#FCA5A5',
+        borderColor: theme.colors.error,
         borderRadius: 12,
         padding: 12,
         marginBottom: 14,
     },
 
     textoErroFormulario: {
-        color: '#991B1B',
+        color: theme.colors.onPrimaryContainer,
         fontSize: 14,
         fontWeight: '600',
         lineHeight: 20,

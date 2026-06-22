@@ -1,38 +1,45 @@
 import { StyleSheet } from 'react-native';
+import { theme } from '../../styles/theme';
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: theme.colors.surface,
         paddingHorizontal: 20,
         paddingTop: 60,
     },
 
+    scrollConteudo: {
+        paddingBottom: 40,
+    },
+
     botaoVoltar: {
         alignSelf: 'flex-start',
-        backgroundColor: '#E5E7EB',
+        backgroundColor: theme.colors.surfaceBright,
         paddingHorizontal: 14,
         paddingVertical: 8,
         borderRadius: 999,
         marginBottom: 24,
+        borderWidth: 1,
+        borderColor: theme.colors.surfaceContainerLow,
     },
 
     textoBotaoVoltar: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 14,
         fontWeight: '700',
     },
 
     card: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.colors.surfaceContainerHigh,
         borderRadius: 22,
         padding: 20,
         borderWidth: 1,
-        borderColor: '#E5E7EB',
+        borderColor: theme.colors.surfaceContainerLow,
     },
 
     titulo: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 26,
         fontWeight: '800',
         lineHeight: 32,
@@ -40,20 +47,20 @@ export const styles = StyleSheet.create({
     },
 
     conteudo: {
-        color: '#374151',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 16,
         lineHeight: 25,
         marginTop: 18,
     },
 
-    autor: {
-        color: '#111827',
+    usuario: {
+        color: theme.colors.onSurface,
         fontSize: 16,
         fontWeight: '700',
     },
 
-    nivel: {
-        color: '#6B7280',
+    nivelUsuario: {
+        color: theme.colors.onSurfaceVariant,
         fontSize: 14,
         marginTop: 4,
     },
@@ -65,24 +72,20 @@ export const styles = StyleSheet.create({
         marginTop: 16,
     },
 
-    xp: {
-        color: '#F59E0B',
+    xpRecompensa: {
+        color: theme.colors.primary,
         fontSize: 14,
         fontWeight: '800',
     },
 
-    data: {
-        color: '#9CA3AF',
+    dataCriacao: {
+        color: theme.colors.outline,
         fontSize: 13,
-    },
-
-    scrollConteudo: {
-        paddingBottom: 40,
     },
 
     estadoCentralizado: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: theme.colors.surface,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 24,
@@ -90,14 +93,14 @@ export const styles = StyleSheet.create({
     },
 
     textoEstado: {
-        color: '#6B7280',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 16,
         textAlign: 'center',
         lineHeight: 24,
     },
 
     tituloNaoEncontrada: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 24,
         fontWeight: '800',
         textAlign: 'center',

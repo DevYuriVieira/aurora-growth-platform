@@ -7,7 +7,6 @@ import {
     View,
 } from 'react-native';
 import Toast from 'react-native-toast-message';
-
 import { PostComunidade } from '../../@types/community';
 import { CardPublicacao } from '../../components/CardPublicacao';
 import {
@@ -15,6 +14,7 @@ import {
     salvarPublicacoes,
 } from '../../services/comunidadeStorageService';
 import { styles } from './style';
+import { theme } from '../../styles/theme';
 
 export function AdminComunidade() {
     const [publicacoes, setPublicacoes] = useState<PostComunidade[]>([]);
@@ -100,7 +100,7 @@ export function AdminComunidade() {
     if (carregando) {
         return (
             <View style={styles.estadoCentralizado}>
-                <ActivityIndicator size="large" color="#2563EB" />
+                <ActivityIndicator size="large" color={theme.colors.primary} />
                 <Text style={styles.textoEstado}>Carregando painel admin...</Text>
             </View>
         );
