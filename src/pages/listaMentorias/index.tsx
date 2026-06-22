@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { mentoriasService } from '../../services/mentoriaService/mentoriaService';
 import { Mentoria } from '../../@types/mentoria';
-import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
+import { ListaMentoriasStackParamList } from '../../routes/navigation';
 import { CardMentoria } from '../../components/CardMentoria/index';
 import Toast from 'react-native-toast-message';
 import { Styles } from './style';

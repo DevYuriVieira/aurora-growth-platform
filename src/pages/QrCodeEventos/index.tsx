@@ -4,7 +4,7 @@ import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import QRCode from 'react-native-qrcode-svg';
 
-import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
+import { ListaMentoriasStackParamList } from '../../routes/navigation';
 import { Styles } from './style';
 
 type RotaProp = RouteProp<ListaMentoriasStackParamList, 'QRCodeEvento'>;

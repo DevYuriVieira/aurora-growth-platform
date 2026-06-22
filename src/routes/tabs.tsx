@@ -5,7 +5,7 @@ import { Home } from '../pages/Home';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { theme } from '../styles/theme';
-import { MentoriasRoutes } from './mentotias.routes';
+import { MentoriasRoutes } from './mentorias.routes';
 
 
 const Tabs = createBottomTabNavigator<ParametrosRotasTabs>();
