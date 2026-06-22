@@ -8,14 +8,20 @@ export type ParametrosRotasStack = {
 export type ParametrosRotasDrawer = {
     DrawerInicio: undefined,
     DrawerConfig: undefined,
+    DrawerPainelMentor: undefined,
 }
 export type ParametrosRotasTabs = {
     TabsHome: undefined,
     TabsMeta: undefined,
     TabsComunidade: undefined,
-    TabsPerfil: undefined
+    TabsMentorias: undefined
 
 }
+export type ListaMentoriasStackParamList = {
+  ListaMentorias: undefined; 
+  DetalhesMentorias: { mentoriaId: string }; 
+  QRCodeEvento: { codigoIngresso: string; tituloEvento: string }; 
+};
 
 declare global {
     namespace ReactNavigation{
