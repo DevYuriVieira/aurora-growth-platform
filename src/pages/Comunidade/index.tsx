@@ -21,9 +21,14 @@ import {
     PublicacaoComunidadeFormData,
     publicacaoComunidadeSchema,
 } from '../../schemas/publicacaoComunidadeSchema';
+// import {
+//     buscarPublicacoesSalvas,
+//     salvarPublicacoes,
+// } from '../../services/comunidadeStorageService';
 import {
     buscarPublicacoesSalvas,
     salvarPublicacoes,
+    resetarPublicacoes,
 } from '../../services/comunidadeStorageService';
 import { PostComunidade } from '../../@types/community';
 import { CardPublicacao } from '../../components/CardPublicacao';
