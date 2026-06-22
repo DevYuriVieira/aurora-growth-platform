@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
+import { theme } from '../../styles/theme';
 
 export const styles = StyleSheet.create({
     containerNegado: {
         flex: 1,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: theme.colors.surface,
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 24,
     },
 
     tituloNegado: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 24,
         fontWeight: '800',
         textAlign: 'center',
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
     },
 
     textoNegado: {
-        color: '#6B7280',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 16,
         lineHeight: 24,
         textAlign: 'center',

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { theme } from '../../styles/theme';
 
 export const styles = StyleSheet.create({
     container: {
@@ -14,20 +15,23 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 9,
         borderRadius: 999,
-        backgroundColor: '#F3F4F6',
+        backgroundColor: theme.colors.surfaceContainerHigh,
+        borderWidth: 1,
+        borderColor: theme.colors.surfaceContainerLow,
     },
 
     botaoFiltroAtivo: {
-        backgroundColor: '#111827',
+        backgroundColor: theme.colors.primary,
+        borderColor: theme.colors.primary,
     },
 
     textoFiltro: {
-        color: '#374151',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 14,
-        fontWeight: '500',
+        fontWeight: '600',
     },
 
     textoFiltroAtivo: {
-        color: '#FFFFFF',
+        color: theme.colors.onPrimary,
     },
 });

@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
+import { theme } from '../../styles/theme';
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.colors.surfaceContainerHigh,
         borderRadius: 18,
         padding: 16,
         marginBottom: 14,
         borderWidth: 1,
-        borderColor: '#E5E7EB',
+        borderColor: theme.colors.surfaceContainerLow,
     },
 
     cabecalho: {
@@ -23,25 +24,25 @@ export const styles = StyleSheet.create({
     },
 
     usuario: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 16,
         fontWeight: '700',
     },
 
     nivelUsuario: {
-        color: '#6B7280',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 13,
         marginTop: 2,
     },
 
     xpRecompensa: {
-        color: '#F59E0B',
+        color: theme.colors.primary,
         fontSize: 13,
         fontWeight: '700',
     },
 
     titulo: {
-        color: '#111827',
+        color: theme.colors.onSurface,
         fontSize: 18,
         fontWeight: '700',
         marginTop: 12,
@@ -49,7 +50,7 @@ export const styles = StyleSheet.create({
     },
 
     conteudo: {
-        color: '#4B5563',
+        color: theme.colors.onSurfaceVariant,
         fontSize: 15,
         lineHeight: 22,
     },
@@ -62,25 +63,25 @@ export const styles = StyleSheet.create({
     },
 
     dataCriacao: {
-        color: '#9CA3AF',
+        color: theme.colors.outline,
         fontSize: 12,
     },
 
     tipo: {
-        color: '#2563EB',
+        color: theme.colors.primary,
         fontSize: 13,
         fontWeight: '600',
     },
 
     botaoEditar: {
-        backgroundColor: '#EEF2FF',
+        backgroundColor: theme.colors.primaryContainer,
         paddingHorizontal: 14,
         paddingVertical: 8,
         borderRadius: 999,
     },
 
     textoBotaoEditar: {
-        color: '#3730A3',
+        color: theme.colors.onPrimaryContainer,
         fontSize: 13,
         fontWeight: '700',
     },
@@ -91,14 +92,14 @@ export const styles = StyleSheet.create({
     },
 
     botaoExcluir: {
-        backgroundColor: '#FEE2E2',
+        backgroundColor: 'rgba(255, 59, 48, 0.15)',
         paddingHorizontal: 14,
         paddingVertical: 8,
         borderRadius: 999,
     },
 
     textoBotaoExcluir: {
-        color: '#B91C1C',
+        color: theme.colors.error,
         fontSize: 13,
         fontWeight: '700',
     },

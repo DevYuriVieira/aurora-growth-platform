@@ -1,26 +1,100 @@
-import { Text, TouchableOpacity, View } from 'react-native';
-
+import { useEffect, useState } from 'react';
 import {
-    TiposPostComunidade,
-} from '../../@types/community';
+    ActivityIndicator,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { PostComunidade, TiposPostComunidade } from '../../@types/community';
 import { EtiquetaArea } from '../../components/EtiquetaArea';
-import { DetalhesPublicacaoProps } from './type';
+import { buscarPublicacoesSalvas } from '../../services/comunidadeStorageService';
+import { ParametrosRotasStack } from '../../routes/navigation';
 import { styles } from './style';
+import { theme } from '../../styles/theme';
 
-export function DetalhesPublicacao({
-    publicacao,
-    aoVoltar,
-}: DetalhesPublicacaoProps) {
+type DetalhesPublicacaoRouteProp = RouteProp<
+    ParametrosRotasStack,
+    'StackDetalhesPublicacao'
+>;
+
+export function DetalhesPublicacao() {
+    const navigation = useNavigation();
+    const route = useRoute<DetalhesPublicacaoRouteProp>();
+
+    const [publicacao, setPublicacao] = useState<PostComunidade | null>(null);
+    const [carregando, setCarregando] = useState(true);
+
+    const { idPublicacao } = route.params;
+
+    async function carregarPublicacao() {
+        try {
+            setCarregando(true);
+
+            const publicacoesSalvas = await buscarPublicacoesSalvas();
+
+            const publicacaoEncontrada = publicacoesSalvas.find(
+                (item) => item.id === idPublicacao
+            );
+
+            setPublicacao(publicacaoEncontrada || null);
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    useEffect(() => {
+        carregarPublicacao();
+    }, []);
+
+    if (carregando) {
+        return (
+            <View style={styles.estadoCentralizado}>
+                <ActivityIndicator size="large" color={theme.colors.primary} />
+                <Text style={styles.textoEstado}>Carregando publicação...</Text>
+            </View>
+        );
+    }
+
+    if (!publicacao) {
+        return (
+            <View style={styles.estadoCentralizado}>
+                <Text style={styles.tituloNaoEncontrada}>
+                    Publicação não encontrada
+                </Text>
+
+                <Text style={styles.textoEstado}>
+                    Essa publicação pode ter sido removida do mural.
+                </Text>
+
+                <TouchableOpacity
+                    style={styles.botaoVoltar}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={styles.textoBotaoVoltar}>← Voltar</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.botaoVoltar} onPress={aoVoltar}>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.scrollConteudo}
+            showsVerticalScrollIndicator={false}
+        >
+            <TouchableOpacity
+                style={styles.botaoVoltar}
+                onPress={() => navigation.goBack()}
+            >
                 <Text style={styles.textoBotaoVoltar}>← Voltar</Text>
             </TouchableOpacity>
 
             <View style={styles.card}>
-                <Text style={styles.autor}>{publicacao.usuario}</Text>
+                <Text style={styles.usuario}>{publicacao.usuario}</Text>
 
-                <Text style={styles.nivel}>
+                <Text style={styles.nivelUsuario}>
                     Nível {publicacao.nivelUsuario} na Jornada Aurora
                 </Text>
 
@@ -33,15 +107,15 @@ export function DetalhesPublicacao({
                 <Text style={styles.conteudo}>{publicacao.conteudo}</Text>
 
                 <View style={styles.linhaInfo}>
-                    <Text style={styles.xp}>+{publicacao.xpRecompensa} XP</Text>
+                    <Text style={styles.xpRecompensa}>+{publicacao.xpRecompensa} XP</Text>
 
-                    <Text style={styles.data}>{publicacao.dataCriacao}</Text>
+                    <Text style={styles.dataCriacao}>{publicacao.dataCriacao}</Text>
                 </View>
 
-                <Text style={[styles.data, { marginTop: 10 }]}>
+                <Text style={[styles.dataCriacao, { marginTop: 10 }]}>
                     Tipo: {TiposPostComunidade[publicacao.tipoPost]}
                 </Text>
             </View>
-        </View>
+        </ScrollView>
     );
 }

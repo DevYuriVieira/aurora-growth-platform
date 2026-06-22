@@ -1,23 +1,29 @@
-import { createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import {
+    createDrawerNavigator,
+    DrawerContentComponentProps,
+    DrawerContentScrollView,
+    DrawerItemList,
+} from '@react-navigation/drawer';
+import { View, Text } from 'react-native';
+
 import { TabsRoutes } from './tabs';
 import { ParametrosRotasDrawer } from './navigation';
-import { View, Text} from 'react-native';
 import { Header } from '../components/Header';
 import { theme } from '../styles/theme';
 import { styles } from './style';
 import { BtnSair } from '../components/BtnSair';
+import { RotaPrivadaAdmin } from '../components/RotaPrivadaAdmin';
+import { AdminComunidade } from '../pages/AdminComunidade';
 import { PainelMentor } from '../pages/painelMentor';
 import Map from '../pages/Map';
 import Profile from '../pages/Profile';
 import Settings from '../pages/Settings';
-
 
 const Drawer = createDrawerNavigator<ParametrosRotasDrawer>();
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
     return (
         <View style={{ flex: 1 }}>
-
             <DrawerContentScrollView {...props}>
                 <DrawerItemList {...props} />
             </DrawerContentScrollView>
@@ -29,82 +35,101 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
     );
 };
 
+function AdminComunidadeProtegida() {
+    return (
+        <RotaPrivadaAdmin>
+            <AdminComunidade />
+        </RotaPrivadaAdmin>
+    );
+}
+
 export const DrawerRoutes = () => {
-    return(
-        <Drawer.Navigator 
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-        screenOptions={{
-            title:'',
-            header: (props) => <Header {...props} />,
-            drawerStyle: {
-                backgroundColor: theme.colors.surface,
-                width:240
-            },
-            drawerActiveBackgroundColor: theme.colors.surfaceContainerHigh,
-            drawerActiveTintColor: theme.colors.primary,
-            drawerInactiveTintColor: theme.colors.onSurfaceVariant
-            }}>
-
-            <Drawer.Screen 
-            name='DrawerInicio' 
-            component={TabsRoutes} 
-            options={{
-                drawerIcon: () => (
-                    <View style={styles.iconsDrawer}>
-                        <Text style={styles.textoDrawer}> Início</Text>
-                    </View>
-                )
+    return (
+        <Drawer.Navigator
+            drawerContent={(props) => <CustomDrawerContent {...props} />}
+            screenOptions={{
+                title: '',
+                header: (props) => <Header {...props} />,
+                drawerStyle: {
+                    backgroundColor: theme.colors.surface,
+                    width: 240,
+                },
+                drawerActiveBackgroundColor: theme.colors.surfaceContainerHigh,
+                drawerActiveTintColor: theme.colors.primary,
+                drawerInactiveTintColor: theme.colors.onSurfaceVariant,
             }}
-            /> 
-
-            <Drawer.Screen 
-             name="DrawerProfile" 
-             component={Profile} 
+        >
+            <Drawer.Screen
+                name="DrawerInicio"
+                component={TabsRoutes}
                 options={{
-                drawerIcon: () => (
-                    <View style={styles.iconsDrawer}>
-                        <Text style={styles.textoDrawer}>Perfil</Text>
-                    </View>
-                    )
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Início</Text>
+                        </View>
+                    ),
                 }}
-           />
+            />
 
-           <Drawer.Screen 
-             name="DrawerMap" 
-             component={Map} 
-            options={{
-                drawerIcon: () => (
-                    <View style={styles.iconsDrawer}>
-                        <Text style={styles.textoDrawer}>Instituições</Text>
-                    </View>
-                    )
+            <Drawer.Screen
+                name="DrawerProfile"
+                component={Profile}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Perfil</Text>
+                        </View>
+                    ),
                 }}
-           />
+            />
 
-           <Drawer.Screen 
-             name="DrawerSettings" 
-             component={Settings} 
-            options={{
-                drawerIcon: () => (
-                    <View style={styles.iconsDrawer}>
-                        <Text style={styles.textoDrawer}>Configurações</Text>
-                    </View>
-                    )
+            <Drawer.Screen
+                name="DrawerMap"
+                component={Map}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Instituições</Text>
+                        </View>
+                    ),
                 }}
-           />
+            />
 
-            <Drawer.Screen 
-                name='DrawerPainelMentor' 
-                component={PainelMentor} 
+            <Drawer.Screen
+                name="DrawerSettings"
+                component={Settings}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Configurações</Text>
+                        </View>
+                    ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="DrawerPainelMentor"
+                component={PainelMentor}
                 options={{
                     drawerIcon: () => (
                         <View style={styles.iconsDrawer}>
                             <Text style={styles.textoDrawer}>Painel Mentor</Text>
                         </View>
-                        )
-                    }}
-                />
+                    ),
+                }}
+            />
 
+            <Drawer.Screen
+                name="DrawerAdminComunidade"
+                component={AdminComunidadeProtegida}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Admin Comunidade</Text>
+                        </View>
+                    ),
+                }}
+            />
         </Drawer.Navigator>
-    )
-}
+    );
+};

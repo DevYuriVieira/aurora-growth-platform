@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PostComunidade } from '../@types/community';
 import { postComunidadeMock } from './comunidadeMock';
+import { buscarPublicacoesDaApi } from './comunidadeApiService';
 
 const CHAVE_PUBLICACOES_COMUNIDADE = '@aurora:publicacoes-comunidade';
 
@@ -10,8 +11,17 @@ export async function buscarPublicacoesSalvas(): Promise<PostComunidade[]> {
     );
 
     if (!publicacoesSalvas) {
-        await salvarPublicacoes(postComunidadeMock);
-        return postComunidadeMock;
+        try {
+            const publicacoesApi = await buscarPublicacoesDaApi();
+
+            await salvarPublicacoes(publicacoesApi);
+
+            return publicacoesApi;
+        } catch {
+            await salvarPublicacoes(postComunidadeMock);
+
+            return postComunidadeMock;
+        }
     }
 
     return JSON.parse(publicacoesSalvas) as PostComunidade[];
@@ -27,6 +37,9 @@ export async function salvarPublicacoes(
 }
 
 export async function resetarPublicacoes(): Promise<PostComunidade[]> {
-    await salvarPublicacoes(postComunidadeMock);
-    return postComunidadeMock;
+    const publicacoesApi = await buscarPublicacoesDaApi();
+
+    await salvarPublicacoes(publicacoesApi);
+
+    return publicacoesApi;
 }

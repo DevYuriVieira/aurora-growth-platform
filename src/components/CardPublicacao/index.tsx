@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from 'react-native';
-import { PostComunidade, TiposPostComunidade } from '../../@types/community';
+import { TiposPostComunidade } from '../../@types/community';
 import { EtiquetaArea } from '../EtiquetaArea';
 import { CardPublicacaoProps } from './type';
 import { styles } from './style';
