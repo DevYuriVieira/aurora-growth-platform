@@ -30,6 +30,12 @@ export default function Profile() {
         }
       } catch (error) {
         Alert.alert('Erro', 'Não foi possível carregar os dados seguros do perfil.');
+        setUser({
+          id: '1',
+          name: 'Usuário Aurora',
+          email: 'usuario@aurora.org',
+          avatarUrl: 'https://via.placeholder.com/150'
+        });
       }
     }
     loadSecureData();
