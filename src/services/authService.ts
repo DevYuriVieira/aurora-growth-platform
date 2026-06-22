@@ -12,9 +12,17 @@ interface APISourceUser {
   perfil: string;
 }
 
-export async function signIn(dados: LoginFormData): Promise<{ usuario: Usuario; token: string }> {
+function normalizarPerfil(perfil: string): 'usuario' | 'admin' {
+  return perfil === 'admin' ? 'admin' : 'usuario';
+}
+
+export async function signIn(
+  dados: LoginFormData
+): Promise<{ usuario: Usuario; token: string }> {
   try {
-    const resposta = await fetch(`${API_URL}/users?email=${encodeURIComponent(dados.email)}`);
+    const resposta = await fetch(
+      `${API_URL}/users?email=${encodeURIComponent(dados.email)}`
+    );
 
     if (!resposta.ok) {
       throw new Error('Erro ao conectar com o servidor.');
@@ -37,23 +45,33 @@ export async function signIn(dados: LoginFormData): Promise<{ usuario: Usuario; 
         id: user.id,
         nome: user.name,
         email: user.email,
-        perfil: user.perfil as 'usuario' | 'admin',
+        perfil: normalizarPerfil(user.perfil),
       },
       token: `token-jwt-fake-${user.perfil}`,
     };
   } catch (error) {
-    throw new Error(error instanceof Error ? error.message : 'Erro interno no login.');
+    throw new Error(
+      error instanceof Error ? error.message : 'Erro interno no login.'
+    );
   }
 }
 
-export async function signUp(dados: RegisterFormData): Promise<{ usuario: Usuario; token: string }> {
+export async function signUp(
+  dados: RegisterFormData
+): Promise<{ usuario: Usuario; token: string }> {
   try {
-    const checarEmail = await fetch(`${API_URL}/users?email=${encodeURIComponent(dados.email)}`);
+    const checarEmail = await fetch(
+      `${API_URL}/users?email=${encodeURIComponent(dados.email)}`
+    );
+
     const emailExistente: APISourceUser[] = await checarEmail.json();
 
-    const emailJaCadastrado = Array.isArray(emailExistente) && emailExistente.some(
-      (u: APISourceUser) => u.email.toLowerCase() === dados.email.toLowerCase()
-    );
+    const emailJaCadastrado =
+      Array.isArray(emailExistente) &&
+      emailExistente.some(
+        (user: APISourceUser) =>
+          user.email.toLowerCase() === dados.email.toLowerCase()
+      );
 
     if (emailJaCadastrado) {
       throw new Error('Este e-mail já está cadastrado.');
@@ -81,11 +99,13 @@ export async function signUp(dados: RegisterFormData): Promise<{ usuario: Usuari
         id: novoUser.id,
         nome: novoUser.name,
         email: novoUser.email,
-        perfil: novoUser.perfil as 'usuario' | 'admin',
+        perfil: normalizarPerfil(novoUser.perfil),
       },
       token: 'token-jwt-fake-novo',
     };
   } catch (error) {
-    throw new Error(error instanceof Error ? error.message : 'Erro ao processar o cadastro.');
+    throw new Error(
+      error instanceof Error ? error.message : 'Erro ao processar o cadastro.'
+    );
   }
 }
