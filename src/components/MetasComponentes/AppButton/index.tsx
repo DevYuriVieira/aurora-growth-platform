@@ -18,7 +18,7 @@ export interface AppButtonProps extends TouchableOpacityProps {
 
 const VARIANT_STYLES: Record<AppButtonVariant, { background: string; text: string }> = {
   primary: { background: theme.colors.primary, text: theme.colors.onPrimary },
-  secondary: { background: theme.colors.surfaceContainerHigh, text: theme.colors.onSurface },
+  secondary: { background: theme.colors.surfaceContainerHigh, text: theme.colors.onPrimary },
   danger: { background: theme.colors.error, text: theme.colors.onPrimary },
 };
 

@@ -7,26 +7,29 @@ export const styles = StyleSheet.create({
   },
   label: {
     fontSize: 13,
-    fontWeight: '600',
-    color: theme.colors.onSurface,
+    fontWeight: 'bold',
+    color: theme.colors.onPrimary,
     marginBottom: 8,
   },
   chip: {
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 999,
-    backgroundColor: theme.colors.surfaceContainerHigh,
+    backgroundColor: theme.colors.surfaceBright,
+    borderWidth: 0.5,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
     marginRight: 8,
   },
-  chipSelected: {
+  chipSelecionado: {
     backgroundColor: theme.colors.primary,
+    borderColor: theme.colors.primary,
   },
-  chipText: {
+  chipTexto: {
     fontSize: 13,
-    color: theme.colors.onSurfaceVariant,
+    color: theme.colors.onPrimaryContainer,
     fontWeight: '600',
   },
-  chipTextSelected: {
+  chipTextoSelecionado: {
     color: theme.colors.onPrimary,
   },
   errorText: {

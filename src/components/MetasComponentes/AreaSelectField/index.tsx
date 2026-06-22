@@ -29,15 +29,18 @@ export function AreaSelectField({
       <Text style={styles.label}>{label}</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {AREAS.map((area) => {
-          const selected = area === value;
+          const selecionado = area === value;
           return (
             <TouchableOpacity
               key={area}
-              style={[styles.chip, selected && styles.chipSelected]}
+              style={[styles.chip, selecionado && styles.chipSelecionado]}
               onPress={() => onChange(area)}
             >
               <Text
-                style={[styles.chipText, selected && styles.chipTextSelected]}
+                style={[
+                  styles.chipTexto,
+                  selecionado && styles.chipTextoSelecionado,
+                ]}
               >
                 {AREA_LABELS[area]}
               </Text>

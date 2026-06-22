@@ -1,5 +1,7 @@
+import Icon from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import { theme } from '../../../styles/theme';
 import { MetaStep } from '../../../@types/meta';
 import { styles } from './styles';
 
@@ -15,10 +17,12 @@ export function StepItem({ step, onToggle }: StepItemProps) {
       onPress={() => onToggle(step.id)}
       activeOpacity={0.7}
     >
-      <View style={[styles.checkbox, step.done && styles.checkboxDone]}>
-        {step.done && <Text style={styles.checkmark}>✓</Text>}
-      </View>
-      <Text style={[styles.title, step.done && styles.titleDone]}>
+      <Icon
+        name={step.done ? 'checkmark-circle' : 'ellipse-outline'}
+        size={22}
+        color={step.done ? theme.colors.primary : theme.colors.outline}
+      />
+      <Text style={[styles.titulo, step.done && styles.tituloConcluido]}>
         {step.title}
       </Text>
     </TouchableOpacity>

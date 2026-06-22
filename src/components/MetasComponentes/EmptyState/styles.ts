@@ -9,20 +9,16 @@ export const styles = StyleSheet.create({
     paddingTop: 80,
     paddingHorizontal: 32,
   },
-  emoji: {
-    fontSize: 40,
-    marginBottom: 12,
-  },
-  title: {
+  titulo: {
     fontSize: 16,
-    fontWeight: '700',
-    color: theme.colors.onSurface,
+    fontWeight: 'bold',
+    color: theme.colors.onPrimary,
     textAlign: 'center',
     marginBottom: 4,
   },
-  subtitle: {
+  subtitulo: {
     fontSize: 13,
-    color: theme.colors.onSurfaceVariant,
+    color: theme.colors.onPrimaryContainer,
     textAlign: 'center',
   },
 });

@@ -15,13 +15,13 @@ export function ProgressSlider({
   onChangeComplete,
   disabled = false,
 }: ProgressSliderProps) {
-  const [displayValue, setDisplayValue] = useState(value);
+  const [valorExibido, setValorExibido] = useState(value);
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.labelRow}>
         <Text style={styles.label}>Progresso</Text>
-        <Text style={styles.value}>{Math.round(displayValue)}%</Text>
+        <Text style={styles.valor}>{Math.round(valorExibido)}%</Text>
       </View>
 
       <Slider
@@ -32,9 +32,9 @@ export function ProgressSlider({
         value={value}
         disabled={disabled}
         minimumTrackTintColor={theme.colors.primary}
-        maximumTrackTintColor={theme.colors.surfaceBright}
+        maximumTrackTintColor="rgba(0, 0, 0, 0.35)"
         thumbTintColor={theme.colors.primary}
-        onValueChange={setDisplayValue}
+        onValueChange={setValorExibido}
         onSlidingComplete={onChangeComplete}
       />
     </View>

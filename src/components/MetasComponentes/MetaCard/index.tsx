@@ -1,8 +1,12 @@
+// src/components/MetasComponentes/MetaCard/index.tsx
+
+import Icon from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { theme } from '../../../styles/theme';
 import { Meta, STATUS_LABELS } from '../../../@types/meta';
 import { AreaBadge } from '../AreaBadge';
-import { ProgressBar } from '../../MetasComponentes/ProgressBar';
+import { ProgressBar } from '../ProgressBar';
 import { styles } from './styles';
 
 export interface MetaCardProps {
@@ -24,12 +28,12 @@ export function MetaCard({ meta, onPress, onDelete }: MetaCardProps) {
           onPress={() => onDelete(meta)}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         >
-          <Text style={styles.deleteText}>Excluir</Text>
+          <Icon name="trash-outline" size={20} color={theme.colors.error} />
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.title}>{meta.title}</Text>
-      <Text style={styles.description} numberOfLines={2}>
+      <Text style={styles.titulo}>{meta.title}</Text>
+      <Text style={styles.subtitulo} numberOfLines={2}>
         {meta.description}
       </Text>
 

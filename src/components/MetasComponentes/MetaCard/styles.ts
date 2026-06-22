@@ -4,7 +4,7 @@ import { theme } from '../../../styles/theme';
 export const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.colors.surfaceBright,
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 16,
     marginBottom: 12,
     borderWidth: 0.5,
@@ -14,22 +14,17 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
-  deleteText: {
-    color: theme.colors.error,
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  title: {
+  titulo: {
     fontSize: 16,
-    fontWeight: '700',
-    color: theme.colors.onSurface,
+    fontWeight: 'bold',
+    color: theme.colors.onPrimary,
     marginBottom: 4,
   },
-  description: {
+  subtitulo: {
     fontSize: 13,
-    color: theme.colors.onSurfaceVariant,
+    color: theme.colors.onPrimaryContainer,
     marginBottom: 12,
   },
   status: {

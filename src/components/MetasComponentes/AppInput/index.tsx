@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, TextInputProps, View } from 'react-native';
-import { styles } from './styles';
 import { theme } from '../../../styles/theme';
+import { styles } from './styles';
 
 export interface AppInputProps extends TextInputProps {
   label: string;
@@ -15,7 +15,7 @@ export function AppInput({ label, error, style, ...rest }: AppInputProps) {
       <TextInput
         style={[styles.input, error && styles.inputError, style]}
         placeholderTextColor={theme.colors.outline}
-         {...rest}
+        {...rest}
       />
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>

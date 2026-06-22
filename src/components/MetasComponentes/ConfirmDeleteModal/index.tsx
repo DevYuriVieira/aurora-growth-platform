@@ -27,24 +27,24 @@ export function ConfirmDeleteModal({
     >
       <View style={styles.overlay}>
         <View style={styles.card}>
-          <Text style={styles.title}>Excluir meta</Text>
-          <Text style={styles.message}>
+          <Text style={styles.titulo}>Excluir meta</Text>
+          <Text style={styles.mensagem}>
             Tem certeza que deseja excluir "{itemName}"? Essa ação não pode
             ser desfeita.
           </Text>
 
-          <View style={styles.actions}>
+          <View style={styles.acoes}>
             <AppButton
               label="Cancelar"
               variant="secondary"
-              style={styles.actionButton}
+              style={styles.botaoAcao}
               onPress={onCancel}
               disabled={loading}
             />
             <AppButton
               label="Excluir"
               variant="danger"
-              style={styles.actionButton}
+              style={styles.botaoAcao}
               onPress={onConfirm}
               loading={loading}
             />

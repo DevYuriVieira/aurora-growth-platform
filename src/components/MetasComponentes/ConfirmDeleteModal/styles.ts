@@ -14,24 +14,26 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.surfaceBright,
     borderRadius: 16,
     padding: 20,
+    borderWidth: 0.5,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
   },
-  title: {
+  titulo: {
     fontSize: 16,
-    fontWeight: '700',
-    color: theme.colors.onSurface,
+    fontWeight: 'bold',
+    color: theme.colors.onPrimary,
     marginBottom: 8,
   },
-  message: {
+  mensagem: {
     fontSize: 13,
-    color: theme.colors.onSurfaceVariant,
+    color: theme.colors.onPrimaryContainer,
     marginBottom: 20,
     lineHeight: 18,
   },
-  actions: {
+  acoes: {
     flexDirection: 'row',
     gap: 12,
   },
-  actionButton: {
+  botaoAcao: {
     flex: 1,
   },
 });

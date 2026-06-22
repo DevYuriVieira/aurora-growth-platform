@@ -12,13 +12,13 @@ export const styles = StyleSheet.create({
   },
   label: {
     fontSize: 13,
-    fontWeight: '600',
-    color: theme.colors.onSurface,
+    fontWeight: 'bold',
+    color: theme.colors.onPrimary,
   },
-  value: {
+  valor: {
     fontSize: 13,
-    fontWeight: '700',
-    color: theme.colors.primary,
+    fontWeight: 'bold',
+    color: '#fff',
   },
   slider: {
     width: '100%',

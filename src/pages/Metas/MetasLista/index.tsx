@@ -97,11 +97,10 @@ export function MetasLista() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Minhas metas</Text>
         <TouchableOpacity style={styles.addButton} onPress={handleCreateMeta}>
           <Text style={styles.addButtonText}>+ Nova meta</Text>
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+        </View>
 
       <FlatList
         data={metas}

@@ -7,12 +7,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
+    borderWidth: 0.5,
+    borderColor: 'rgba(255, 255, 255, 0.15)',
   },
   disabled: {
     opacity: 0.6,
   },
   label: {
     fontSize: 15,
-    fontWeight: '700',
+    fontWeight: 'bold',
   },
 });
