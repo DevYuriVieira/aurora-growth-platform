@@ -1,11 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { ListaMentorias } from '../../pages/listaMentorias';
-import { DetalhesMentorias } from '../../pages/detalhesMentorias';
-import { QRCodeEvento } from '../../pages/QrCodeEventos';
-import { ListaMentoriasStackParamList } from './types';
-import { theme } from '../../styles/theme';
+import { ListaMentorias } from '../pages/listaMentorias';
+import { DetalhesMentorias } from '../pages/detalhesMentorias';
+import { QRCodeEvento } from '../pages/QrCodeEventos';
+import { ListaMentoriasStackParamList } from './navigation';
+import { theme } from '../styles/theme';
 
 const Stack = createNativeStackNavigator < ListaMentoriasStackParamList > ();
 

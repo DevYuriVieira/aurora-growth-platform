@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import { theme } from '../styles/theme';
 import { styles } from './style';
 import { BtnSair } from '../components/BtnSair';
+import { PainelMentor } from '../pages/painelMentor';
 
 
 const Drawer = createDrawerNavigator<ParametrosRotasDrawer>();
@@ -52,6 +53,17 @@ export const DrawerRoutes = () => {
                 )
             }}
             /> 
+            <Drawer.Screen 
+                name='DrawerPainelMentor' 
+                component={PainelMentor} 
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}> Painel do Mentor</Text>
+                        </View>
+                        )
+                    }}
+                />
 
         </Drawer.Navigator>
     )
