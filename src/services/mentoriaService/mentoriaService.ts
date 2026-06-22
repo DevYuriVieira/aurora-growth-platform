@@ -39,6 +39,11 @@ export const mentoriasService = {
   
   inscreverNoEvento: async (mentoriaId: string): Promise<RespostaInscricao> => {
     try {
+      const response = await api.post('/inscritos', {
+        mentoriaId: mentoriaId,
+        dataInscricao: new Date().toISOString()
+      });
+      
       const dadosInscricao = String(Date.now());
       
       return {
