@@ -13,7 +13,6 @@ import { styles } from './style';
 import { BtnSair } from '../components/BtnSair';
 import { RotaPrivadaAdmin } from '../components/RotaPrivadaAdmin';
 import { AdminComunidade } from '../pages/AdminComunidade';
-import { usuarioAdminMock } from '../services/usuarioMock';
 import { PainelMentor } from '../pages/painelMentor';
 
 const Drawer = createDrawerNavigator<ParametrosRotasDrawer>();
@@ -34,7 +33,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
 
 function AdminComunidadeProtegida() {
     return (
-        <RotaPrivadaAdmin usuario={usuarioAdminMock}>
+        <RotaPrivadaAdmin>
             <AdminComunidade />
         </RotaPrivadaAdmin>
     );
