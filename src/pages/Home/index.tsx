@@ -7,8 +7,11 @@ import { theme } from '../../styles/theme';
 import { XpCard } from '../../components/XpCard';
 import { gerarConquistas } from '../../data/conquistas';
 import { useProgress } from '../../contexts/ProgressContext';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Home = () => {
+
+    const { usuario } = useAuth();
 
     const minhasMetas = [
         { id: '1', titulo: 'Ler 20 Páginas', subtitulo: 'Rotina Diária', icone: 'book' },
@@ -43,12 +46,13 @@ export const Home = () => {
         else return 'Boa noite';
     };
 
+    const primeiroNome = usuario?.nome ? usuario.nome.split(' ')[0] : 'Visitante';
     return (
             <View style={{ flex: 1 }} >
                 <ScrollView style={styles.container} >
                     <View>
                         <View style={styles.contMensagem}>
-                            <Text style={styles.contTitulo}>{saudacao()}, Thon.</Text>
+                            <Text style={styles.contTitulo}>{saudacao()}, {primeiroNome}.</Text>
                             <Text style={styles.contSubtitulo}>Cada passo na sua jornada conta.</Text>
                         </View>
 

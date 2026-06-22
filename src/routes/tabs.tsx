@@ -1,9 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text } from 'react-native';
+
 import { ParametrosRotasTabs } from './navigation';
 import { Home } from '../pages/Home';
 import { Comunidade } from '../pages/Comunidade';
+import { MentoriasRoutes } from './mentorias.routes';
 import { styles } from './style';
 import { theme } from '../styles/theme';
 
@@ -101,10 +103,11 @@ export const TabsRoutes = () => {
             />
 
             <Tabs.Screen
-                name="TabsPerfil"
-                component={Home}
+                name="TabsMentorias"
+                component={MentoriasRoutes}
                 options={{
                     title: '',
+                    headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <View style={styles.iconTabs}>
                             <Ionicons

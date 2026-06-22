@@ -13,7 +13,8 @@ import { styles } from './style';
 import { BtnSair } from '../components/BtnSair';
 import { RotaPrivadaAdmin } from '../components/RotaPrivadaAdmin';
 import { AdminComunidade } from '../pages/AdminComunidade';
-import { usuarioComumMock } from '../services/usuarioMock';
+import { usuarioAdminMock } from '../services/usuarioMock';
+import { PainelMentor } from '../pages/painelMentor';
 
 const Drawer = createDrawerNavigator<ParametrosRotasDrawer>();
 
@@ -33,7 +34,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
 
 function AdminComunidadeProtegida() {
     return (
-        <RotaPrivadaAdmin usuario={usuarioComumMock}>
+        <RotaPrivadaAdmin usuario={usuarioAdminMock}>
             <AdminComunidade />
         </RotaPrivadaAdmin>
     );
@@ -62,6 +63,18 @@ export const DrawerRoutes = () => {
                     drawerIcon: () => (
                         <View style={styles.iconsDrawer}>
                             <Text style={styles.textoDrawer}> Início</Text>
+                        </View>
+                    ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="DrawerPainelMentor"
+                component={PainelMentor}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}> Painel do Mentor</Text>
                         </View>
                     ),
                 }}

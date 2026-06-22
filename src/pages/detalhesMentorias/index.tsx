@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, ActivityIndicator, Alert, Share } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-import { ListaMentoriasStackParamList } from '../../routes/mentoriasRoutes/types';
+import { ListaMentoriasStackParamList } from '../../routes/navigation';
 import { mentoriasService } from '../../services/mentoriaService/mentoriaService';
-import { useNotification } from '../../contexts/notificationContext';
+import { useNotification } from '../../contexts/NotificationContext';
 import { Mentoria } from '../../@types/mentoria';
 import Toast from 'react-native-toast-message';
 import {Styles} from './style';
@@ -63,7 +62,10 @@ export function DetalhesMentorias() {
             const resposta = await mentoriasService.inscreverNoEvento(mentoriaId);
 
             if (resposta.sucesso && mentoria) {
-                adicionarNotificacao();
+                adicionarNotificacao(
+                 'Inscrição Confirmada! 🎉', 
+                 `Você garantiu sua vaga na mentoria "${mentoria.titulo}". O evento foi adicionado à sua agenda.`
+                );;
 
                 Alert.alert('Inscrição Confirmada!', 'O evento foi adicionado à sua agenda.');
                 navegacao.navigate('QRCodeEvento', {
