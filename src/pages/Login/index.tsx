@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
-
 import { useAuth } from '../../hooks/useAuth';
 import { loginSchema, LoginFormData } from '../../schemas/loginSchema';
 import { LoginScreenNavigationProp } from '../../routes/type';
