@@ -62,7 +62,10 @@ export function DetalhesMentorias() {
             const resposta = await mentoriasService.inscreverNoEvento(mentoriaId);
 
             if (resposta.sucesso && mentoria) {
-                adicionarNotificacao();
+                adicionarNotificacao(
+                 'Inscrição Confirmada! 🎉', 
+                 `Você garantiu sua vaga na mentoria "${mentoria.titulo}". O evento foi adicionado à sua agenda.`
+                );;
 
                 Alert.alert('Inscrição Confirmada!', 'O evento foi adicionado à sua agenda.');
                 navegacao.navigate('QRCodeEvento', {
