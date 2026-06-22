@@ -24,7 +24,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [carregando, setCarregando] = useState(true);
 
-  const [request, resposta, promptAsync] = Google.useAuthRequest({
+  const [, resposta, promptAsync] = Google.useAuthRequest({
     androidClientId: process.env.EXPO_PUBLIC_ANDROID_CLIENT_ID,
     iosClientId: process.env.EXPO_PUBLIC_IOS_CLIENT_ID,
     webClientId: process.env.EXPO_PUBLIC_WEB_CLIENT_ID,
@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async function carregarSessao() {
       try {
         const { usuario: usuarioSalvo, token } = await asyncStorage.getAuthData();
-        
+
         if (usuarioSalvo && token) {
           setUsuario(usuarioSalvo);
         }
@@ -44,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       } finally {
         setCarregando(false);
-        await SplashScreen.hideAsync(); 
+        await SplashScreen.hideAsync();
       }
     }
 
@@ -52,20 +52,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-  if (resposta?.type === 'success') {
-    const { authentication } = resposta;
+    if (resposta?.type === 'success') {
+      const { authentication } = resposta;
 
-    const dadosUsuarioGoogle: Usuario = {
-      id: 'google-123',
-      nome: 'Usuário Google',
-      email: 'usuario@gmail.com',
-      perfil: 'usuario', 
-    };
+      const dadosUsuarioGoogle: Usuario = {
+        id: 'google-123',
+        nome: 'Usuário Google',
+        email: 'usuario@gmail.com',
+        perfil: 'usuario',
+      };
 
-    setUsuario(dadosUsuarioGoogle);
-    asyncStorage.saveAuthData(dadosUsuarioGoogle, authentication?.accessToken || 'google-token');
-  }
-}, [resposta]);
+      setUsuario(dadosUsuarioGoogle);
+      asyncStorage.saveAuthData(dadosUsuarioGoogle, authentication?.accessToken || 'google-token');
+    }
+
+    if (resposta) {
+      setCarregando(false);
+    }
+  }, [resposta]);
 
   async function entrar(dados: LoginFormData) {
     setCarregando(true);
@@ -90,7 +94,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  async function stylesSair() {
+  async function sair() {
     try {
       await asyncStorage.removeAuthData();
       setUsuario(null);
@@ -102,13 +106,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider 
-      value={{ 
-        usuario, 
-        carregando, 
-        entrar, 
-        entrarComGoogle, 
-        sair: stylesSair 
+    <AuthContext.Provider
+      value={{
+        usuario,
+        carregando,
+        entrar,
+        entrarComGoogle,
+        sair
       }}
     >
       {children}

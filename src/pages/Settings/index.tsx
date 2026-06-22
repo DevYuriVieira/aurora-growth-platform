@@ -47,7 +47,6 @@ export default function Settings() {
         />
       </View>
 
-      <Toast />
     </View>
   );
 }
