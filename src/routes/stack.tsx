@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from 'react-native';
 import { ParametrosRotasStack } from './navigation';
 import { TabsRoutes } from './tabs';
 import { DrawerRoutes } from './drawer';
-import { Notificacoes } from '../pages/Notificacoes';
+// import { Notificacoes } from '../pages/Notificacoes';
 import { theme } from '../styles/theme';
 import { AuthRoutes } from './auth.routes';
 import { useAuth } from '../hooks/useAuth';
@@ -29,7 +29,7 @@ export const StackRoutes = () => {
                 <Stack.Group>
                     <Stack.Screen name='StackHome' component={DrawerRoutes}/>
                     <Stack.Screen name='StackTabsRoutes' component={TabsRoutes}/>
-                    <Stack.Screen 
+                    {/* <Stack.Screen 
                         name='StackNotificacoes' 
                         component={Notificacoes} 
                         options={{ 
@@ -39,7 +39,7 @@ export const StackRoutes = () => {
                             headerStyle: { backgroundColor: theme.colors.surface },
                             headerShadowVisible: false,
                         }}
-                    />
+                    /> */}
                 </Stack.Group>
 
             ) : (

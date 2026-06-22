@@ -1,5 +1,3 @@
-// src/types/meta.ts
-
 export type AreaType =
   | 'educacao'
   | 'trabalho'
@@ -38,6 +36,16 @@ export const AREA_LABELS: Record<AreaType, string> = {
   saude: 'Saúde',
   financas: 'Finanças',
   profissao: 'Orientação Profissional',
+};
+
+import { Ionicons } from '@expo/vector-icons';
+
+export const AREA_ICONS: Record<AreaType, keyof typeof Ionicons.glyphMap> = {
+  educacao: 'school',
+  trabalho: 'briefcase',
+  saude: 'barbell',
+  financas: 'cash',
+  profissao: 'compass',
 };
 
 export const STATUS_LABELS: Record<MetaStatus, string> = {
