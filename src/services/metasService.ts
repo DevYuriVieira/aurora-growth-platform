@@ -1,8 +1,10 @@
 import { api } from './api';
 import { CreateMetaInput, Meta, UpdateMetaInput } from '../@types/meta';
 
-export async function getMetas(): Promise<Meta[]> {
-  const response = await api.get<Meta[]>('/metas');
+export async function getMetas(userId: string): Promise<Meta[]> {
+  const response = await api.get<Meta[]>('/metas', {
+    params: { userId },
+  });
   return response.data;
 }
 

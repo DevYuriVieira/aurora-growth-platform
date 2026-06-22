@@ -32,9 +32,6 @@ export const Header = ({ navigation }: DrawerHeaderProps) => {
                     )}
                 </TouchableOpacity>
                 
-                <TouchableOpacity>
-                    <Icon name='person-circle' size={40} color={theme.colors.outline}/>
-                </TouchableOpacity>
             </View>
         </View>
     );
