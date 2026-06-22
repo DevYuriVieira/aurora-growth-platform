@@ -2,36 +2,78 @@ import { Usuario } from '../@types/user';
 import { LoginFormData } from '../schemas/loginSchema';
 import { RegisterFormData } from '../schemas/registerSchema';
 
+const API_URL = 'https://6a38a16064a2d82692229b3c.mockapi.io/users';
+
 export async function signIn(dados: LoginFormData): Promise<{ usuario: Usuario; token: string }> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (dados.email === 'teste@aurora.com' && dados.password === '123456') {
-        resolve({
-          usuario: { id: '1', nome: 'Yuri Vieira', email: dados.email, perfil: 'usuario' },
-          token: 'token-jwt-usuario-comum',
-        });
-      } 
-      // Login de Administrador
-      else if (dados.email === 'admin@aurora.com' && dados.password === 'admin123') {
-        resolve({
-          usuario: { id: '99', nome: 'Admin Aurora', email: dados.email, perfil: 'admin' },
-          token: 'token-jwt-seguro-admin',
-        });
-      } 
-      else {
-        reject(new Error('Credenciais inválidas. Use teste@aurora.com (123456) ou admin@aurora.com (admin123).'));
-      }
-    }, 1200);
-  });
+  try {
+    const resposta = await fetch(`${API_URL}/users?email=${dados.email}`);
+    
+    if (!resposta.ok) {
+      throw new Error('Erro ao conectar com o servidor.');
+    }
+    
+    const usuarios = await resposta.json();
+
+    if (usuarios.length === 0) {
+      throw new Error('E-mail ou senha inválidos.');
+    }
+
+    const user = usuarios[0];
+
+    if (user.password !== dados.password) {
+      throw new Error('E-mail ou senha inválidos.');
+    }
+
+    return {
+      usuario: {
+        id: user.id,
+        nome: user.name,
+        email: user.email,
+        perfil: user.perfil as 'usuario' | 'admin',
+      },
+      token: `token-jwt-fake-${user.perfil}`,
+    };
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Erro interno no login.');
+  }
 }
 
 export async function signUp(dados: RegisterFormData): Promise<{ usuario: Usuario; token: string }> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        usuario: { id: '2', nome: dados.name, email: dados.email, perfil: 'usuario' },
-        token: 'token-jwt-novo-usuario',
-      });
-    }, 1200);
-  });
+  try {
+    const checarEmail = await fetch(`${API_URL}/users?email=${dados.email}`);
+    const emailExistente = await checarEmail.json();
+
+    if (emailExistente.length > 0) {
+      throw new Error('Este e-mail já está cadastrado.');
+    }
+
+    const resposta = await fetch(`${API_URL}/users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: dados.name,
+        email: dados.email,
+        password: dados.password,
+        perfil: 'usuario',
+      }),
+    });
+
+    if (!resposta.ok) {
+      throw new Error('Não foi possível salvar os dados no servidor.');
+    }
+
+    const novoUser = await resposta.json();
+
+    return {
+      usuario: {
+        id: novoUser.id,
+        nome: novoUser.name,
+        email: novoUser.email,
+        perfil: novoUser.perfil as 'usuario' | 'admin',
+      },
+      token: 'token-jwt-fake-novo',
+    };
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Erro ao processar o cadastro.');
+  }
 }
