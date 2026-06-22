@@ -16,17 +16,24 @@ export type ParametrosRotasDrawer = {
     DrawerProfile:undefined,
     DrawerMap:undefined,
 }
+
 export type ParametrosRotasTabs = {
     TabsHome: undefined,
-    TabsMeta: undefined,
+    TabsMeta: NavigatorScreenParams<MetasStackParamList>,
     TabsComunidade: undefined,
     TabsMentorias: undefined
-
 }
+
 export type ListaMentoriasStackParamList = {
   ListaMentorias: undefined; 
   DetalhesMentorias: { mentoriaId: string }; 
   QRCodeEvento: { codigoIngresso: string; tituloEvento: string }; 
+};
+
+export type MetasStackParamList = {
+  MetasLista: undefined;
+  MetasDetalhe: { metaId: string };
+  MetasFormulario: { metaId?: string };
 };
 
 declare global {
