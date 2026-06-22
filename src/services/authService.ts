@@ -4,15 +4,23 @@ import { RegisterFormData } from '../schemas/registerSchema';
 
 const API_URL = 'https://6a38a16064a2d82692229b3c.mockapi.io';
 
+interface APISourceUser {
+  id: string;
+  name: string;
+  email: string;
+  password?: string;
+  perfil: string;
+}
+
 export async function signIn(dados: LoginFormData): Promise<{ usuario: Usuario; token: string }> {
   try {
-    const resposta = await fetch(`${API_URL}/users?email=${dados.email}`);
-    
+    const resposta = await fetch(`${API_URL}/users?email=${encodeURIComponent(dados.email)}`);
+
     if (!resposta.ok) {
       throw new Error('Erro ao conectar com o servidor.');
     }
-    
-    const usuarios = await resposta.json();
+
+    const usuarios: APISourceUser[] = await resposta.json();
 
     if (usuarios.length === 0) {
       throw new Error('E-mail ou senha inválidos.');
@@ -40,10 +48,14 @@ export async function signIn(dados: LoginFormData): Promise<{ usuario: Usuario; 
 
 export async function signUp(dados: RegisterFormData): Promise<{ usuario: Usuario; token: string }> {
   try {
-    const checarEmail = await fetch(`${API_URL}/users?email=${dados.email}`);
-    const emailExistente = await checarEmail.json();
+    const checarEmail = await fetch(`${API_URL}/users?email=${encodeURIComponent(dados.email)}`);
+    const emailExistente: APISourceUser[] = await checarEmail.json();
 
-    if (emailExistente.length > 0) {
+    const emailJaCadastrado = Array.isArray(emailExistente) && emailExistente.some(
+      (u: APISourceUser) => u.email.toLowerCase() === dados.email.toLowerCase()
+    );
+
+    if (emailJaCadastrado) {
       throw new Error('Este e-mail já está cadastrado.');
     }
 
@@ -62,7 +74,7 @@ export async function signUp(dados: RegisterFormData): Promise<{ usuario: Usuari
       throw new Error('Não foi possível salvar os dados no servidor.');
     }
 
-    const novoUser = await resposta.json();
+    const novoUser: APISourceUser = await resposta.json();
 
     return {
       usuario: {
