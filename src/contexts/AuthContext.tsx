@@ -52,19 +52,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (resposta?.type === 'success') {
-      const { authentication } = resposta;
-      
-      const dadosUsuarioGoogle: Usuario = {
-        id: 'google-123',
-        nome: 'Usuário Google',
-        email: 'usuario@gmail.com'
-      };
-      
-      setUsuario(dadosUsuarioGoogle);
-      asyncStorage.saveAuthData(dadosUsuarioGoogle, authentication?.accessToken || 'google-token');
-    }
-  }, [resposta]);
+  if (resposta?.type === 'success') {
+    const { authentication } = resposta;
+
+    const dadosUsuarioGoogle: Usuario = {
+      id: 'google-123',
+      nome: 'Usuário Google',
+      email: 'usuario@gmail.com',
+      perfil: 'usuario', 
+    };
+
+    setUsuario(dadosUsuarioGoogle);
+    asyncStorage.saveAuthData(dadosUsuarioGoogle, authentication?.accessToken || 'google-token');
+  }
+}, [resposta]);
 
   async function entrar(dados: LoginFormData) {
     setCarregando(true);
