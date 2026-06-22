@@ -1,26 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.tsx to start working on your app!</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
+import Toast from 'react-native-toast-message';
 
-import { Comunidade } from './src/pages/Comunidade';
+import Routes from './src/routes';
+import { ProgressProvider } from './src/contexts/ProgressContext';
+import { NotificationProvider } from './src/contexts/NotificationContext';
 
 export default function App() {
-  return <Comunidade />;
+  return (
+    <ProgressProvider>
+      <NotificationProvider>
+        <Routes />
+        <Toast />
+      </NotificationProvider>
+    </ProgressProvider>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
