@@ -4,25 +4,22 @@ import { View, Text, FlatList, TouchableOpacity, SafeAreaView } from 'react-nati
 import { useNotification } from '../../contexts/NotificationContext';
 import Icon from '@expo/vector-icons/Ionicons';
 import { Styles } from './style';
-// 👇 2. Importamos o useNavigation para fazer o botão voltar funcionar
 import { useNavigation } from '@react-navigation/native'; 
 import { theme } from '../../styles/theme';
 
 export function Notificacoes() {
     const { notificacoes: notificacoesNaoLidas, limparNotificacoes, marcarTodasComoLidas } = useNotification();
-    const navigation = useNavigation(); // 👇 3. Inicializamos o navegador
+    const navigation = useNavigation(); 
 
     useEffect(() => {
         marcarTodasComoLidas();
     }, []);
 
     return (
-        // 👇 4. Envolvemos a tela no SafeAreaView
         <SafeAreaView style={Styles.safe}> 
             <View style={Styles.container}>
                 
                 <View style={Styles.cabecalho}>
-                    {/* 👇 5. Agrupamos a Seta + Título juntos */}
                     <View style={Styles.tituloContainer}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={Styles.btnVoltar}>
                             <Icon name="arrow-back" size={28} color={theme.colors.primary} />
