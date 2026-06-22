@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as SecureStore from 'expo-secure-store';
+import { styles } from './style';
 
 interface UserProfile {
   id: string;
@@ -98,14 +99,3 @@ export default function Profile() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF', padding: 20 },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  avatar: { width: 150, height: 150, borderRadius: 75, backgroundColor: '#E1E6EB' },
-  loader: { marginVertical: 10 },
-  name: { fontSize: 22, fontWeight: 'bold', color: '#172B4D', marginTop: 15 },
-  email: { fontSize: 16, color: '#5E6C84', marginBottom: 30 },
-  button: { backgroundColor: '#0052CC', paddingVertical: 12, paddingHorizontal: 30, borderRadius: 8, marginVertical: 5, width: '100%', alignItems: 'center' },
-  buttonText: { color: '#FFF', fontSize: 16, fontWeight: '600' }
-});

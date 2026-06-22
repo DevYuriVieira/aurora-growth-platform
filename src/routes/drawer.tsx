@@ -96,18 +96,6 @@ export const DrawerRoutes = () => {
             />
 
             <Drawer.Screen
-                name="DrawerSettings"
-                component={Settings}
-                options={{
-                    drawerIcon: () => (
-                        <View style={styles.iconsDrawer}>
-                            <Text style={styles.textoDrawer}>Configurações</Text>
-                        </View>
-                    ),
-                }}
-            />
-
-            <Drawer.Screen
                 name="DrawerPainelMentor"
                 component={PainelMentor}
                 options={{

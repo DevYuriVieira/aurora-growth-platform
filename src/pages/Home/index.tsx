@@ -1,27 +1,35 @@
-import Icon from '@expo/vector-icons/Ionicons';
 import { ScrollView, View, Text, TouchableOpacity, FlatList } from "react-native"
 import { styles } from './style';
 import { MetaCard } from '../../components/MetaCard/Index';
 import { ConquistaCard } from '../../components/ConquistaCard';
-import { theme } from '../../styles/theme';
 import { XpCard } from '../../components/XpCard';
 import { gerarConquistas } from '../../data/conquistas';
 import { useProgress } from '../../contexts/ProgressContext';
 import { useAuth } from '../../hooks/useAuth';
+import { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { getMetas } from '../../services/metasService';
+import { Meta, AREA_ICONS, AREA_LABELS } from '../../@types/meta';
 
 export const Home = () => {
 
     const { usuario } = useAuth();
-
-    const minhasMetas = [
-        { id: '1', titulo: 'Ler 20 Páginas', subtitulo: 'Rotina Diária', icone: 'book' },
-        { id: '2', titulo: 'Treino de Força', subtitulo: 'Hoje às 18:00', icone: 'barbell' },
-        { id: '3', titulo: 'Beber 2L de Água', subtitulo: 'Saúde', icone: 'water' },
-        { id: '4', titulo: 'Estudar Programação', subtitulo: '2 horas', icone: 'code-slash' },
-    ];
-
     const { xpTotal, nivel, addXp, resetProgress } = useProgress(); 
+    const [metas, setMetas] = useState<Meta[]>([]);
 
+    useFocusEffect(
+        useCallback(() => {
+            if (!usuario) return;
+            getMetas(usuario.id).then(setMetas).catch(() => {});
+        }, [usuario?.id])
+    );
+
+    const minhasMetas = metas.map((meta) => ({
+      id: meta.id,
+      titulo: meta.title,
+      subtitulo: AREA_LABELS[meta.area],
+      icone: AREA_ICONS[meta.area],
+    }));
 
     const catalogo = gerarConquistas(minhasMetas.length, nivel);
 
@@ -47,6 +55,7 @@ export const Home = () => {
     };
 
     const primeiroNome = usuario?.nome ? usuario.nome.split(' ')[0] : 'Visitante';
+    
     return (
             <View style={{ flex: 1 }} >
                 <ScrollView style={styles.container} >
@@ -60,24 +69,6 @@ export const Home = () => {
                             <XpCard 
                                  xpTotal={xpTotal} 
                             />
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 15, marginVertical: 15 }}>
-                            <TouchableOpacity 
-                                style={{ backgroundColor: '#4CAF50', padding: 12, borderRadius: 8 }}
-                                
-                                onPress={() => addXp(50)} 
-                            >
-                                <Text style={{ color: 'white', fontWeight: 'bold' }}>Ganhar +50 XP</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity 
-                                 style={{ backgroundColor: '#F44336', padding: 12, borderRadius: 8 }}
-                                 
-                                 onPress={() => resetProgress()} 
-                             >
-                                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Zerar Progresso</Text>
-                             </TouchableOpacity>
-
                         </View>
 
                         <View style={styles.contMetas}>
@@ -125,11 +116,6 @@ export const Home = () => {
                         </View>
                     </View>
                 </ScrollView>
-                <TouchableOpacity activeOpacity={0.8}>
-                    <View style={styles.btnMeta}>
-                        <Icon name='add-outline' size={25} color= {theme.colors.primaryContainer}  />
-                    </View>
-                </TouchableOpacity>
             </View>
     );
 };

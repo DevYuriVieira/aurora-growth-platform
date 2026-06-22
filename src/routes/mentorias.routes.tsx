@@ -14,7 +14,7 @@ export function MentoriasRoutes() {
         <Stack.Navigator
             screenOptions={{
                 headerStyle: { backgroundColor: theme.colors.surface },
-                headerTintColor: theme.colors.primary,
+                headerTintColor: theme.colors.onPrimary,
                 headerTitleAlign: 'center'
             }}
         >

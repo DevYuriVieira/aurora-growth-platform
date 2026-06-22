@@ -1,46 +1,34 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { theme } from "../../styles/theme";
 
-export const styles = StyleSheet.create({
+const screenWidth = Dimensions.get('window').width;
 
-    card:{
+export const styles = StyleSheet.create({
+    detalhecard: {
+        backgroundColor: theme.colors.surfaceBright,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        
-    
-        
-    },
-    detalhecard:{
-        backgroundColor: theme.colors.surfaceBright,
-        flexDirection: 'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        padding:10,
-        borderRadius:10,        
-        width: 345,
-        height:80,
-        paddingLeft: 20,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        borderRadius: 10,
+        width: screenWidth - 40,
+        minHeight: 80,
         borderWidth: 0.5,
         borderColor: 'rgba(255, 255, 255, 0.15)'
-        
     },
-    detalhetexto:{
-        paddingRight:70
-        
+    detalhetexto: {
+        flex: 1, 
+        paddingHorizontal: 15, 
     },
-
-    titulo:{
+    titulo: {
         fontSize: 16,
         fontWeight: 'bold',
         color: theme.colors.onPrimary,
         marginBottom: 4
-    }, 
-
-    subtitulo:{
+    },
+    subtitulo: {
         fontSize: 13,
         color: theme.colors.onPrimaryContainer,
     },
-
-
-})
+});

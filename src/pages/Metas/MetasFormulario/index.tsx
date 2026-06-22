@@ -17,6 +17,7 @@ import {
 } from '../../../services/metasService';
 import { AreaType } from '../../../@types/meta';
 import { styles } from './styles';
+import { useAuth } from '../../../hooks/useAuth';
 
 type Navigation = NativeStackNavigationProp<MetasStackParamList, 'MetasFormulario'>;
 type Route = RouteProp<MetasStackParamList, 'MetasFormulario'>;
@@ -32,6 +33,7 @@ export function MetasFormulario() {
   const route = useRoute<Route>();
   const metaId = route.params?.metaId;
   const isEditing = !!metaId;
+  const { usuario } = useAuth();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -87,6 +89,7 @@ export function MetasFormulario() {
 
   async function handleSave() {
     if (!validate() || !area) return;
+    if (!usuario) return;
 
     setSaving(true);
     try {
@@ -95,12 +98,12 @@ export function MetasFormulario() {
         Toast.show({ type: 'success', text1: 'Meta atualizada com sucesso' });
       } else {
         await createMeta({
-          userId: 'current-user', 
+          userId: usuario.id,
           title,
           description,
           area,
           steps: [],
-        });
+          });
         Toast.show({ type: 'success', text1: 'Meta criada com sucesso' });
       }
 

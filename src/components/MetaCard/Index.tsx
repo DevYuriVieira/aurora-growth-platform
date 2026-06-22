@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import  Icon  from '@expo/vector-icons/Ionicons';
+import Icon from '@expo/vector-icons/Ionicons';
 import { styles } from './style';
 import { theme } from '../../styles/theme';
 
@@ -11,17 +11,17 @@ interface MetaCardProps {
 
 export const MetaCard = ({ titulo, subtitulo, nomeIcon }: MetaCardProps) => { 
     return (
-        <TouchableOpacity>
+        <View>
             <View style={styles.detalhecard}>
-                <View>
-                    <Icon name={nomeIcon} size={35} color={theme.colors.onPrimaryContainer}/>
-                </View>
+                
+                <Icon name={nomeIcon} size={35} color={theme.colors.onPrimaryContainer}/>
+                
                 <View style={styles.detalhetexto}>
-                    <Text style={styles.titulo}>{titulo}</Text>
+                    <Text style={styles.titulo} >{titulo}</Text>
                     <Text style={styles.subtitulo}>{subtitulo}</Text>
                 </View>
-                <Icon name="chevron-forward" size={20} color="#C4C4CC" />
+                
             </View>  
-        </TouchableOpacity> 
+        </View> 
     );
 };

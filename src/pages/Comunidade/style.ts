@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: theme.colors.surface,
         paddingHorizontal: 18,
-        paddingTop: 60,
+        paddingTop: 32,
     },
 
     cabecalho: {

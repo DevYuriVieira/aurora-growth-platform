@@ -1,3 +1,4 @@
+import { useAuth } from '../../../hooks/useAuth';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -22,6 +23,7 @@ type Navigation = NativeStackNavigationProp<MetasStackParamList, 'MetasLista'>;
 
 export function MetasLista() {
   const navigation = useNavigation<Navigation>();
+  const { usuario } = useAuth();
 
   const [metas, setMetas] = useState<Meta[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,8 +32,9 @@ export function MetasLista() {
   const [deleting, setDeleting] = useState(false);
 
   const loadMetas = useCallback(async () => {
+    if (!usuario) return;
     try {
-      const data = await getMetas();
+      const data = await getMetas(usuario.id);
       setMetas(data);
     } catch (error) {
       Toast.show({
@@ -43,7 +46,7 @@ export function MetasLista() {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);
+  }, [usuario]);
 
   useEffect(() => {
     loadMetas();
@@ -98,10 +101,10 @@ export function MetasLista() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Minhas metas</Text>
-          <TouchableOpacity style={styles.addButton} onPress={handleCreateMeta}>
-            <Text style={styles.addButtonText}>+ Nova meta</Text>
-          </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={styles.addButton} onPress={handleCreateMeta}>
+          <Text style={styles.addButtonText}>+ Nova meta</Text>
+        </TouchableOpacity>
+      </View>
 
       <FlatList
         data={metas}
