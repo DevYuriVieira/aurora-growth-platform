@@ -25,7 +25,7 @@ export function QRCodeEvento() {
             </View>
 
             <TouchableOpacity style={Styles.botaoVoltar} onPress={() => navegacao.popToTop()}>
-                <Text style={Styles.textoBotao}>Voltar para Início</Text>
+                <Text style={Styles.textoBotao}>Voltar para Mentorias e Eventos</Text>
             </TouchableOpacity>
         </View>
     );
