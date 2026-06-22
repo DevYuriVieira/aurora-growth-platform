@@ -1,19 +1,92 @@
-import { Text, TouchableOpacity, View } from 'react-native';
-
+import { useEffect, useState } from 'react';
 import {
-    TiposPostComunidade,
-} from '../../@types/community';
+    ActivityIndicator,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { PostComunidade, TiposPostComunidade } from '../../@types/community';
 import { EtiquetaArea } from '../../components/EtiquetaArea';
-import { DetalhesPublicacaoProps } from './type';
+import { buscarPublicacoesSalvas } from '../../services/comunidadeStorageService';
+import { ParametrosRotasStack } from '../../routes/navigation';
 import { styles } from './style';
 
-export function DetalhesPublicacao({
-    publicacao,
-    aoVoltar,
-}: DetalhesPublicacaoProps) {
+type DetalhesPublicacaoRouteProp = RouteProp<
+    ParametrosRotasStack,
+    'StackDetalhesPublicacao'
+>;
+
+export function DetalhesPublicacao() {
+    const navigation = useNavigation();
+    const route = useRoute<DetalhesPublicacaoRouteProp>();
+
+    const [publicacao, setPublicacao] = useState<PostComunidade | null>(null);
+    const [carregando, setCarregando] = useState(true);
+
+    const { idPublicacao } = route.params;
+
+    async function carregarPublicacao() {
+        try {
+            setCarregando(true);
+
+            const publicacoesSalvas = await buscarPublicacoesSalvas();
+
+            const publicacaoEncontrada = publicacoesSalvas.find(
+                (item) => item.id === idPublicacao
+            );
+
+            setPublicacao(publicacaoEncontrada || null);
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    useEffect(() => {
+        carregarPublicacao();
+    }, []);
+
+    if (carregando) {
+        return (
+            <View style={styles.estadoCentralizado}>
+                <ActivityIndicator size="large" color="#2563EB" />
+                <Text style={styles.textoEstado}>Carregando publicação...</Text>
+            </View>
+        );
+    }
+
+    if (!publicacao) {
+        return (
+            <View style={styles.estadoCentralizado}>
+                <Text style={styles.tituloNaoEncontrada}>
+                    Publicação não encontrada
+                </Text>
+
+                <Text style={styles.textoEstado}>
+                    Essa publicação pode ter sido removida do mural.
+                </Text>
+
+                <TouchableOpacity
+                    style={styles.botaoVoltar}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={styles.textoBotaoVoltar}>← Voltar</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.botaoVoltar} onPress={aoVoltar}>
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.scrollConteudo}
+            showsVerticalScrollIndicator={false}
+        >
+            <TouchableOpacity
+                style={styles.botaoVoltar}
+                onPress={() => navigation.goBack()}
+            >
                 <Text style={styles.textoBotaoVoltar}>← Voltar</Text>
             </TouchableOpacity>
 
@@ -42,6 +115,6 @@ export function DetalhesPublicacao({
                     Tipo: {TiposPostComunidade[publicacao.tipoPost]}
                 </Text>
             </View>
-        </View>
+        </ScrollView>
     );
 }

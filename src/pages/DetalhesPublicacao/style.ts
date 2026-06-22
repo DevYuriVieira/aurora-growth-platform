@@ -75,4 +75,31 @@ export const styles = StyleSheet.create({
         color: '#9CA3AF',
         fontSize: 13,
     },
+
+    scrollConteudo: {
+        paddingBottom: 40,
+    },
+
+    estadoCentralizado: {
+        flex: 1,
+        backgroundColor: '#F9FAFB',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 24,
+        gap: 12,
+    },
+
+    textoEstado: {
+        color: '#6B7280',
+        fontSize: 16,
+        textAlign: 'center',
+        lineHeight: 24,
+    },
+
+    tituloNaoEncontrada: {
+        color: '#111827',
+        fontSize: 24,
+        fontWeight: '800',
+        textAlign: 'center',
+    },
 });

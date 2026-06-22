@@ -30,7 +30,12 @@ import { CardPublicacao } from '../../components/CardPublicacao';
 import { FiltroArea } from '../../components/FiltroComunidade/type';
 import { FiltroComunidade } from '../../components/FiltroComunidade';
 import { styles } from './style';
-import { DetalhesPublicacao } from '../DetalhesPublicacao';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { ParametrosRotasStack } from '../../routes/navigation';
+
+type NavegacaoComunidadeProps =
+    NativeStackNavigationProp<ParametrosRotasStack>;
 
 const areasFormulario: AreaComunidade[] = [
     'educacao',
@@ -57,14 +62,19 @@ export function Comunidade() {
     const [titulo, setTitulo] = useState('');
     const [conteudo, setConteudo] = useState('');
     const [erroFormulario, setErroFormulario] = useState('');
+    const navigation = useNavigation<NavegacaoComunidadeProps>();
     const [areaFormulario, setAreaFormulario] =
         useState<AreaComunidade>('carreira');
     const [tipoFormulario, setTipoFormulario] =
         useState<TipoPost>('historia');
     const [publicacaoEmEdicao, setPublicacaoEmEdicao] =
         useState<PostComunidade | null>(null);
-    const [publicacaoSelecionada, setPublicacaoSelecionada] =
-        useState<PostComunidade | null>(null);
+
+    function abrirDetalhes(publicacao: PostComunidade) {
+        navigation.navigate('StackDetalhesPublicacao', {
+            idPublicacao: publicacao.id,
+        });
+    }
 
     function mostrarToastSucesso(titulo: string, mensagem: string) {
         Toast.show({
@@ -274,15 +284,6 @@ export function Comunidade() {
         );
     }
 
-    if (publicacaoSelecionada) {
-        return (
-            <DetalhesPublicacao
-                publicacao={publicacaoSelecionada}
-                aoVoltar={() => setPublicacaoSelecionada(null)}
-            />
-        );
-    }
-
     return (
         <View style={styles.container}>
             <View style={styles.cabecalho}>
@@ -314,7 +315,7 @@ export function Comunidade() {
                 renderItem={({ item }) => (
                     <CardPublicacao
                         publicacao={item}
-                        aoPressionar={setPublicacaoSelecionada}
+                        aoPressionar={abrirDetalhes}
                         aoEditar={abrirEdicao}
                         aoExcluir={confirmarExclusao}
                     />

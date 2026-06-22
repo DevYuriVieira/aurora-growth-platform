@@ -1,9 +1,12 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type ParametrosRotasStack = {
-    StackHome: undefined,
-    StackTabsRoutes: undefined
-}
+    StackHome: undefined;
+    StackTabsRoutes: undefined;
+    StackDetalhesPublicacao: {
+        idPublicacao: string;
+    };
+};
 export type ParametrosRotasDrawer = {
     DrawerInicio: undefined;
     DrawerConfig: undefined;
