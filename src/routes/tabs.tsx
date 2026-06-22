@@ -6,6 +6,7 @@ import { View, Text } from 'react-native';
 import { styles } from './style';
 import { theme } from '../styles/theme';
 import { MentoriasRoutes } from './mentorias.routes';
+import { MetasStackRoutes } from './metas.routes';
 
 
 const Tabs = createBottomTabNavigator<ParametrosRotasTabs>();
@@ -39,9 +40,10 @@ export const TabsRoutes = () => {
 
             <Tabs.Screen 
             name= 'TabsMeta' 
-            component={Home}
+            component={MetasStackRoutes}
             options={{
                 title:'',
+                headerShown: false,
                 tabBarIcon: ({focused}) => (
                     <View style={styles.iconTabs}>
                         <Icon name={focused? 'rocket' : 'rocket-outline'} size={25} color={focused? theme.colors.primary : theme.colors.outline}/>
