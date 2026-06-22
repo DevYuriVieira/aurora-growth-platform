@@ -6,7 +6,7 @@ export const theme = {
     surfaceBright: '#39393C',
     primaryContainer: '#4A251D',
     onPrimaryContainer: '#FFDBCB',
-    surfaceContainerLow: '#1B1B1E',
+    surfaceContainerLow: 'rgba(255, 255, 255, 0.15)',
     surfaceContainerHigh: '#242427',
     onSurface: '#E6E1E5',
     onSurfaceVariant: '#CAC4D0',

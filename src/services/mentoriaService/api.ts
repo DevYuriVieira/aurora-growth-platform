@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://192.168.1.6:3000', 
-  timeout: 5000,
-  headers: {
-    'Content-Type': 'application/json',
-  }
+  baseURL: 'https://6a38b0f264a2d8269222ace7.mockapi.io', 
+  timeout: 10000,
 });
