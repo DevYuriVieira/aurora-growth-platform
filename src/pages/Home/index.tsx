@@ -125,7 +125,7 @@ export const Home = () => {
                         </View>
                     </View>
                 </ScrollView>
-                <TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.8}>
                     <View style={styles.btnMeta}>
                         <Icon name='add-outline' size={25} color= {theme.colors.primaryContainer}  />
                     </View>

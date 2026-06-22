@@ -5,10 +5,11 @@ import { ParametrosRotasStack } from './navigation';
 import { TabsRoutes } from './tabs';
 import { DrawerRoutes } from './drawer';
 import { DetalhesPublicacao } from '../pages/DetalhesPublicacao';
-// import { Notificacoes } from '../pages/Notificacoes';
 import { theme } from '../styles/theme';
 import { AuthRoutes } from './auth.routes';
 import { useAuth } from '../hooks/useAuth';
+
+// import { Notificacoes } from '../pages/Notificacoes';
 
 const Stack = createNativeStackNavigator<ParametrosRotasStack>();
 
@@ -39,16 +40,16 @@ export const StackRoutes = () => {
                     <Stack.Screen name="StackTabsRoutes" component={TabsRoutes} />
 
                     {/* <Stack.Screen
-                        name="StackNotificacoes"
-                        component={Notificacoes}
-                        options={{
-                            title: '',
-                            headerBackTitle: '',
-                            headerTintColor: theme.colors.primary,
-                            headerStyle: { backgroundColor: theme.colors.surface },
-                            headerShadowVisible: false,
-                        }}
-                    /> */}
+            name="StackNotificacoes"
+            component={Notificacoes}
+            options={{
+              title: '',
+              headerBackTitle: '',
+              headerTintColor: theme.colors.primary,
+              headerStyle: { backgroundColor: theme.colors.surface },
+              headerShadowVisible: false,
+            }}
+          /> */}
 
                     <Stack.Screen
                         name="StackDetalhesPublicacao"

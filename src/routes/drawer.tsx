@@ -5,6 +5,7 @@ import {
     DrawerItemList,
 } from '@react-navigation/drawer';
 import { View, Text } from 'react-native';
+
 import { TabsRoutes } from './tabs';
 import { ParametrosRotasDrawer } from './navigation';
 import { Header } from '../components/Header';
@@ -14,6 +15,9 @@ import { BtnSair } from '../components/BtnSair';
 import { RotaPrivadaAdmin } from '../components/RotaPrivadaAdmin';
 import { AdminComunidade } from '../pages/AdminComunidade';
 import { PainelMentor } from '../pages/painelMentor';
+import Map from '../pages/Map';
+import Profile from '../pages/Profile';
+import Settings from '../pages/Settings';
 
 const Drawer = createDrawerNavigator<ParametrosRotasDrawer>();
 
@@ -61,7 +65,43 @@ export const DrawerRoutes = () => {
                 options={{
                     drawerIcon: () => (
                         <View style={styles.iconsDrawer}>
-                            <Text style={styles.textoDrawer}> Início</Text>
+                            <Text style={styles.textoDrawer}>Início</Text>
+                        </View>
+                    ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="DrawerProfile"
+                component={Profile}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Perfil</Text>
+                        </View>
+                    ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="DrawerMap"
+                component={Map}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Instituições</Text>
+                        </View>
+                    ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="DrawerSettings"
+                component={Settings}
+                options={{
+                    drawerIcon: () => (
+                        <View style={styles.iconsDrawer}>
+                            <Text style={styles.textoDrawer}>Configurações</Text>
                         </View>
                     ),
                 }}
@@ -73,7 +113,7 @@ export const DrawerRoutes = () => {
                 options={{
                     drawerIcon: () => (
                         <View style={styles.iconsDrawer}>
-                            <Text style={styles.textoDrawer}> Painel do Mentor</Text>
+                            <Text style={styles.textoDrawer}>Painel Mentor</Text>
                         </View>
                     ),
                 }}
@@ -85,7 +125,7 @@ export const DrawerRoutes = () => {
                 options={{
                     drawerIcon: () => (
                         <View style={styles.iconsDrawer}>
-                            <Text style={styles.textoDrawer}> Admin Comunidade</Text>
+                            <Text style={styles.textoDrawer}>Admin Comunidade</Text>
                         </View>
                     ),
                 }}

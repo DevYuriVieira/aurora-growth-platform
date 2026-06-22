@@ -6,6 +6,7 @@ import { ParametrosRotasTabs } from './navigation';
 import { Home } from '../pages/Home';
 import { Comunidade } from '../pages/Comunidade';
 import { MentoriasRoutes } from './mentorias.routes';
+import { MetasStackRoutes } from './metas.routes';
 import { styles } from './style';
 import { theme } from '../styles/theme';
 
@@ -52,9 +53,10 @@ export const TabsRoutes = () => {
 
             <Tabs.Screen
                 name="TabsMeta"
-                component={Home}
+                component={MetasStackRoutes}
                 options={{
                     title: '',
+                    headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <View style={styles.iconTabs}>
                             <Ionicons
