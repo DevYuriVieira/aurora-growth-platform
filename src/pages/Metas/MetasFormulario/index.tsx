@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, ScrollView, View } from 'react-native';
+import { ActivityIndicator, Alert, ScrollView, View, Text } from 'react-native';
 import Toast from 'react-native-toast-message';
 
 import { AppButton } from '../../../components/MetasComponentes/AppButton';
@@ -141,6 +141,10 @@ export function MetasFormulario() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+       <Text style={styles.pageTitle}>
+          {isEditing ? 'Editar meta' : 'Nova meta'}
+       </Text>
+
       <AppInput
         label="Título da meta"
         placeholder="Ex: Conseguir meu primeiro emprego"

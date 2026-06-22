@@ -22,6 +22,13 @@ export const styles = StyleSheet.create({
     marginTop: 12,
     marginBottom: 6,
   },
+  pageTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: theme.colors.onSurface,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
   description: {
     fontSize: 14,
     color: theme.colors.onSurfaceVariant,

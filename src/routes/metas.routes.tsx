@@ -10,22 +10,10 @@ const Stack = createNativeStackNavigator<MetasStackParamList>();
 
 export function MetasStackRoutes() {
   return (
-    <Stack.Navigator initialRouteName="MetasLista">
-      <Stack.Screen
-        name="MetasLista"
-        component={MetasLista}
-        options={{ title: 'Minhas metas' }}
-      />
-      <Stack.Screen
-        name="MetasDetalhe"
-        component={MetasDetalhe}
-        options={{ title: 'Detalhes da meta' }}
-      />
-      <Stack.Screen
-        name="MetasFormulario"
-        component={MetasFormulario}
-        options={{ title: 'Nova meta' }}
-      />
+    <Stack.Navigator initialRouteName="MetasLista" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="MetasLista" component={MetasLista} />
+      <Stack.Screen name="MetasDetalhe" component={MetasDetalhe} />
+      <Stack.Screen name="MetasFormulario" component={MetasFormulario} />
     </Stack.Navigator>
   );
 }

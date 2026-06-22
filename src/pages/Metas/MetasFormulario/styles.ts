@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
     textAlignVertical: 'top',
     paddingTop: 12,
   },
+  pageTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: theme.colors.onPrimary,
+    marginBottom: 16,
+  },
   saveButton: {
     marginBottom: 12,
   },
