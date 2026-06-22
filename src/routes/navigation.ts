@@ -1,7 +1,9 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type ParametrosRotasStack = {
+    AuthRoutes: undefined;
     StackLogin: undefined,
+    StackRegister: undefined,
     StackHome: undefined,
     StackTabsRoutes: undefined,
     StackNotificacoes: undefined;
