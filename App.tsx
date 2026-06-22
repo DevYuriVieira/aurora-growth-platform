@@ -1,17 +1,21 @@
-import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import 'react-native-gesture-handler';
+
 import Toast from 'react-native-toast-message';
 
-import { MetasStackRoutes } from './src/routes/metas.routes';
+import Routes from './src/routes';
 import { ProgressProvider } from './src/contexts/ProgressContext';
+import { NotificationProvider } from './src/contexts/NotificationContext';
+import { AuthProvider } from './src/contexts/AuthContext';
 
 export default function App() {
   return (
-    <ProgressProvider>
-      <NavigationContainer>
-        <MetasStackRoutes />
-        <Toast />
-      </NavigationContainer>
-    </ProgressProvider>
+    <AuthProvider>
+      <ProgressProvider>
+        <NotificationProvider>
+          <Routes />
+          <Toast />
+        </NotificationProvider>
+      </ProgressProvider>
+    </AuthProvider>
   );
 }
